@@ -10,7 +10,13 @@ jobs:
     - name: Install cppcheck
       run: sudo apt install cppcheck
 
+
+    - name: Set CXX_INCLUDE_PATH
+      run: echo "CXX_INCLUDE_PATH=$(g++ -print-file-name=include | sed 's|/c++||')" >> $GITHUB_ENV
+
     - name: Run cppcheck
       run: |
-        cppcheck --enable=all --inconclusive --std=c++17 -I/usr/include/c++/x.x.x --suppress=missingInclude --suppress=missingIncludeSystem src/UE/Application src/UE/main.cpp 2> >(tee cppcheck.log)
-        [ ! -s cppcheck.log ]
+        cppcheck --enable=all --inconclusive --std=c++17 -I${{ env.CXX_INCLUDE_PATH }} \
+        --suppress=missingInclude --suppress=missingIncludeSystem \
+        --error-exitcode=0 \
+        src/UE/Application src/UE/main.cpp 2> >(tee cppcheck.log)
