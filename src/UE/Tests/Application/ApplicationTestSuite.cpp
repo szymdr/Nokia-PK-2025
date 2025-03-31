@@ -56,7 +56,7 @@ void ApplicationNotConnectedTestSuite::sendAttachRequestOnSib()
      }
  };
 
-TEST_F(ApplicationNotConnectedTestSuite, shallConnectOnAttachAccept)
+TEST_F(ApplicationConnectingTestSuite, shallConnectOnAttachAccept)
 {
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(userPortMock, showConnected());
