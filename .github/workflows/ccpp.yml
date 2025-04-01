@@ -22,7 +22,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
     - name: cmake
-      run: cmake .
+      run: cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .
     - name: make all targets
       run: make all
 
