@@ -8,40 +8,45 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: src
-        
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Remove existing Qt directory
-      run: rm -rf ~/Qt && rm -rf /home/runner/work/Nokia-PK-2025/Qt/
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v2
-    - name: cmake
-      run: cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .
-    - name: make all targets
-      run: make all
+      - name: Remove existing Qt directory
+        run: rm -rf ~/Qt && rm -rf /home/runner/work/Nokia-PK-2025/Qt/
 
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y clang-tidy cmake ninja-build
 
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y clang-tidy cmake ninja-build
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '6.5.2'
+          modules: 'qtbase qtdeclarative'
 
-    - name: Run Clang-Tidy
-      run: clang-tidy -p build $(find . -name '*.cpp' -or -name '*.h')
+      - name: Configure CMake
+        run: cmake -S . -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
-    - name: UT for BtsApplication
-      run: make BtsApplicationUT 
+      - name: Build all targets
+        run: cmake --build build --target all
 
-    - name: run BTS ut
-      run: ./BTS/Tests/Application/BtsApplicationUT
+      - name: Run Clang-Tidy
+        run: clang-tidy -p build $(find . -name '*.cpp' -or -name '*.h')
 
-    - name: UT for COMMON
-      run: make COMMON_UT
+      - name: Run UT for BtsApplication
+        run: cmake --build build --target BtsApplicationUT
 
-    - name: UT for UeApplication
-      run: make UeApplicationUT
+      - name: Run BTS UT
+        run: ./build/BTS/Tests/Application/BtsApplicationUT
+
+      - name: Run UT for COMMON
+        run: cmake --build build --target COMMON_UT
+
+      - name: Run UT for UeApplication
+        run: cmake --build build --target UeApplicationUT
