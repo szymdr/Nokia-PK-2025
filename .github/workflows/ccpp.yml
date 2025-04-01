@@ -17,6 +17,8 @@ jobs:
         
     steps:
     - uses: actions/checkout@v2
+    - name: Remove existing Qt directory
+      run: rm -rf /home/runner/work/Nokia-PK-2025/Qt/
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
     - name: cmake
