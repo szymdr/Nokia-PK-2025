@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Remove existing Qt directory
-        run: rm -rf ~/Qt && rm -rf /home/runner/work/Nokia-PK-2025/Qt/
+        run: sudo rm -rf /home/runner/work/Nokia-PK-2025/Qt && rm -rf ~/Qt
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y clang-tidy cmake ninja-build
