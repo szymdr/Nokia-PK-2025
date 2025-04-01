@@ -31,7 +31,7 @@ jobs:
           modules: 'qtbase qtdeclarative'
 
       - name: Configure CMake
-        run: cmake -S . -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        run: cmake -S . -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
       - name: Build all targets
         run: cmake --build build --target all
