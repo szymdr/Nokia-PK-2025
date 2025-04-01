@@ -24,14 +24,17 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y clang-tidy cmake ninja-build
 
-      - name: Install Qt
+      - name: Install Qt5
         uses: jurplel/install-qt-action@v2
         with:
-          version: '6.5.2'
+          version: '5.15.2'
           modules: 'qtbase qtdeclarative'
 
+      - name: Check Qt Installation
+        run: ls -R ~/Qt/
+
       - name: Configure CMake
-        run: cmake -S . -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_PREFIX_PATH=/home/runner/Qt
+        run: cmake -S . -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=~/Qt/5.15.2/gcc_64/
 
       - name: Build all targets
         run: cmake --build build --target all
