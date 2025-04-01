@@ -30,9 +30,6 @@ jobs:
           version: '5.15.2'
           modules: 'qtbase qtdeclarative'
 
-      - name: Check Qt Installation
-        run: ls -R ~/Qt/
-
       - name: Set Qt5Widgets_DIR
         run: echo "Qt5Widgets_DIR=/home/runner/work/Nokia-PK-2025/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets" >> $GITHUB_ENV
 
