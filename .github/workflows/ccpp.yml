@@ -33,6 +33,9 @@ jobs:
       - name: Check Qt Installation
         run: ls -R ~/Qt/
 
+      - name: Set Qt5Widgets_DIR
+        run: echo "Qt5Widgets_DIR=/home/runner/work/Nokia-PK-2025/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets" >> $GITHUB_ENV
+
       - name: Configure CMake
         run: cmake -S . -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=~/Qt/5.15.2/gcc_64/
 
