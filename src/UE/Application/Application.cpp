@@ -43,16 +43,16 @@ void Application::handleAttachReject()
 
 void Application::handleCallRequest(common::PhoneNumber phoneNumber)
 {
-    //context.state->handleCallRequest(phoneNumber);
+    context.state->handleCallRequest(phoneNumber);
 }
 void Application::handleUserAcceptCall()
 {
-    //context.state->handleUserAcceptCall();
+    context.state->handleUserAcceptCall();
 }
 
 void Application::handleUserRejectCall()
 {
-    //context.state->handleUserRejectCall();
+    context.state->handleUserRejectCall();
 }
 
 

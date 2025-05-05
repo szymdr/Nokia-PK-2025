@@ -19,6 +19,7 @@ void ConnectedState::handleCallRequest(common::PhoneNumber number)
     callerNumber    = number;
     context.user.showIncomingCall(callerNumber);
     context.timer.startTimer(3000ms);
+    context.bts.sendCallRequest(callerNumber);
 }
 
 void ConnectedState::handleUserAcceptCall()
@@ -34,18 +35,18 @@ void ConnectedState::handleUserAcceptCall()
 void ConnectedState::handleUserRejectCall()
 {
     if (!waitingForCall) return;
-    // krok 3a–5a: użytkownik odrzucił
     waitingForCall = false;
     context.timer.stopTimer();
     context.user.showConnected();
     context.bts.sendCallDrop(callerNumber);
-    // pozostajemy w ConnectedState
 }
 
 void ConnectedState::handleTimeout()
 {
     if (!waitingForCall) return;
-    handleUserRejectCall();
+    waitingForCall = false;
+    context.user.showConnected();
+    context.bts.sendCallDrop(callerNumber);
 }
 
 }

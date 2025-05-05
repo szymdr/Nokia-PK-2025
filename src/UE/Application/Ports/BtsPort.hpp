@@ -16,6 +16,7 @@ public:
     void stop();
 
     void sendAttachRequest(common::BtsId) override;
+    void sendCallRequest(common::PhoneNumber) override;
     void sendCallAccept(common::PhoneNumber) override;
     void sendCallDrop(common::PhoneNumber) override;
     void sendCallReject(common::PhoneNumber) override;
