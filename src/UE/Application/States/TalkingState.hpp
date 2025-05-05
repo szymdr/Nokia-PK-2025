@@ -10,6 +10,8 @@ class TalkingState : public BaseState
 public:
     TalkingState(Context& context);
     ~TalkingState() override;
+    
+    void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 };
 
 }

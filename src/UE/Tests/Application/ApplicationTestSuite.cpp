@@ -132,15 +132,8 @@ TEST_F(ApplicationReceivingCallTestSuite, shallRejectCallOnTimeout)
     objectUnderTest.handleTimeout();
 }
 
-/*
-TEST_F(ApplicationConnectedTestSuite, shallAlertUserOnUnknownPeerAfterAccept)
+TEST_F(ApplicationReceivingCallTestSuite, shallAlertUserOnUnknownPeerAfterAccept)
 {
-    using namespace std::chrono_literals;
-    // setup: incoming + accept
-    EXPECT_CALL(userPortMock, showIncomingCall(PHONE_NUMBER));
-    EXPECT_CALL(timerPortMock, startTimer(3000ms));
-    objectUnderTest.handleCallRequest(PHONE_NUMBER);
-
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallAccept(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showTalking());
@@ -148,16 +141,12 @@ TEST_F(ApplicationConnectedTestSuite, shallAlertUserOnUnknownPeerAfterAccept)
 
     // BTS → UnknownRecipient
     EXPECT_CALL(userPortMock, showAlert("Peer unavailable"));
+    EXPECT_CALL(userPortMock, showConnected());
     objectUnderTest.handleUnknownRecipient(PHONE_NUMBER);
 }
 
-TEST_F(ApplicationConnectedTestSuite, ignoreUnknownPeerAfterReject)
+TEST_F(ApplicationReceivingCallTestSuite, ignoreUnknownPeerAfterReject)
 {
-    using namespace std::chrono_literals;
-    // setup: incoming + reject
-    EXPECT_CALL(userPortMock, showIncomingCall(PHONE_NUMBER));
-    EXPECT_CALL(timerPortMock, startTimer(3000ms));
-    objectUnderTest.handleCallRequest(PHONE_NUMBER);
 
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
@@ -167,7 +156,5 @@ TEST_F(ApplicationConnectedTestSuite, ignoreUnknownPeerAfterReject)
     // BTS → UnknownRecipient
     EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PHONE_NUMBER));
 }
-*/
-
 
 }

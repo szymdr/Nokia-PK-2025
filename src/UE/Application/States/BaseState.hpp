@@ -25,6 +25,7 @@ public:
     void handleCallRequest(common::PhoneNumber phoneNumber) override;
     void handleUserAcceptCall() override;
     void handleUserRejectCall() override;
+    void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 
 protected:
     Context& context;

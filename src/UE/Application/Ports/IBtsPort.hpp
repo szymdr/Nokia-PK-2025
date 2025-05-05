@@ -18,6 +18,7 @@ public:
     virtual void handleCallRequest(common::PhoneNumber) = 0;
     virtual void handleUserAcceptCall() = 0;
     virtual void handleUserRejectCall() = 0;
+    virtual void handleUnknownRecipient(common::PhoneNumber phoneNumber) = 0;
 };
 
 class IBtsPort

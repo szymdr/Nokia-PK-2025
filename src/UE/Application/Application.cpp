@@ -55,5 +55,10 @@ void Application::handleUserRejectCall()
     context.state->handleUserRejectCall();
 }
 
+void Application::handleUnknownRecipient(common::PhoneNumber phoneNumber)
+{
+    context.state->handleUnknownRecipient(phoneNumber);
+}
+
 
 }

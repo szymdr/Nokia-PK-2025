@@ -21,6 +21,7 @@ public:
     MOCK_METHOD(void, handleCallRequest, (common::PhoneNumber), (override));
     MOCK_METHOD(void, handleUserAcceptCall, (), (override));
     MOCK_METHOD(void, handleUserRejectCall, (), (override));
+    MOCK_METHOD(void, handleUnknownRecipient, (common::PhoneNumber), (final));
 };
 
 class IBtsPortMock : public IBtsPort
