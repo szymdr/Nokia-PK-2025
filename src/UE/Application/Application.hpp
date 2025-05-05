@@ -28,7 +28,9 @@ public:
     void handleSib(common::BtsId btsId) override;
     void handleAttachAccept() override;
     void handleAttachReject() override;
-
+    void handleCallRequest(PhoneNumber phoneNumber) override;
+    void handleUserAcceptCall() override;
+    void handleUserRejectCall() override;
 private:
     Context context;
     common::PrefixedLogger logger;

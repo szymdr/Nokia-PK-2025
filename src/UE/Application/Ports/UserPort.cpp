@@ -39,4 +39,19 @@ void UserPort::showConnected()
     menu.addSelectionListItem("View SMS", "");
 }
 
+void UserPort::showIncomingCall(common::PhoneNumber number)
+{
+    //gui.showIncomingCall(number);
+}
+
+void UserPort::showDialing()
+{
+    //gui.showDialing();
+}
+
+void UserPort::showTalking()
+{
+    //gui.showTalking();
+}
+
 }

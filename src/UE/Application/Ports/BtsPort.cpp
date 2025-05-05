@@ -69,8 +69,21 @@ void BtsPort::sendAttachRequest(common::BtsId btsId)
                                 common::PhoneNumber{}};
     msg.writeBtsId(btsId);
     transport.sendMessage(msg.getMessage());
+}
 
+void BtsPort::sendCallAccept(common::PhoneNumber number)
+{
+    logger.logDebug("sendCallAccept: ", number);
+}
 
+void BtsPort::sendCallDrop(common::PhoneNumber number)
+{
+    logger.logDebug("sendCallDrop: ", number);
+}
+
+void BtsPort::sendCallReject(common::PhoneNumber number)
+{
+    logger.logDebug("sendCallReject: ", number);
 }
 
 }

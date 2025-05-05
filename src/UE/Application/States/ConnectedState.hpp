@@ -9,6 +9,10 @@ class ConnectedState : public BaseState
 {
 public:
     ConnectedState(Context& context);
+
+    ~ConnectedState() override;
+
+    void handleCallRequest(common::PhoneNumber phoneNumber) override;
 };
 
 }

@@ -9,4 +9,11 @@ ConnectedState::ConnectedState(Context &context)
     context.user.showConnected();
 }
 
+    ConnectedState::~ConnectedState() = default;
+
+void ConnectedState::handleCallRequest(common::PhoneNumber number)
+{
+    //context.userPort.showIncomingCall(number);
+}
+
 }
