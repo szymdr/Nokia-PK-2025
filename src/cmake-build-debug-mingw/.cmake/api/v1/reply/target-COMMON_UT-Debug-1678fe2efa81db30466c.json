@@ -1,0 +1,316 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "COMMON/Tests/COMMON_UT.exe"
+		},
+		{
+			"path" : "COMMON/Tests/COMMON_UT.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_link_gtest",
+			"include_directories",
+			"set_gtest_options"
+		],
+		"files" : 
+		[
+			"COMMON/Tests/CMakeLists.txt",
+			"internal_commands.cmake",
+			"googletest/googlemock/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 35,
+				"parent" : 4
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 105,
+				"parent" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 102,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 28,
+				"parent" : 10
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 29,
+				"parent" : 10
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 30,
+				"parent" : 10
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 31,
+				"parent" : 10
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -Og  -g -std=gnu++20 -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/cmake-build-debug-mingw/COMMON/Tests"
+				},
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/COMMON/Tests"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/COMMON"
+				},
+				{
+					"backtrace" : 11,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googletest/include"
+				},
+				{
+					"backtrace" : 12,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googlemock/include"
+				},
+				{
+					"backtrace" : 13,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googletest"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googlemock"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "gmock::@d68da25237a7ca2351af"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "gmock_main::@d68da25237a7ca2351af"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "gtest::@f95b5c00bd49b3b4698d"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Common::@1b08b490bb01f627c501"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "CommonUtMocks::@621852611d1949b737bb"
+		}
+	],
+	"id" : "COMMON_UT::@aaa3ca18eb9801d43fac",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g -Og  -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "COMMON\\Tests\\Mocks\\libCommonUtMocks.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "COMMON\\libCommon.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "lib\\libgmock_maind.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "lib\\libgmockd.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "lib\\libgtestd.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "COMMON_UT",
+	"nameOnDisk" : "COMMON_UT.exe",
+	"paths" : 
+	{
+		"build" : "COMMON/Tests",
+		"source" : "COMMON/Tests"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/EnumTraitsTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/ILoggerTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/IncomingMessageTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/LoggerTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/MultiLineConfigTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/OutgoingMessageTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "COMMON/Tests/PrefixedLoggerTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

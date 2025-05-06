@@ -15,10 +15,12 @@ void BtsPort::start(IBtsEventsHandler &handler)
 {
     transport.registerMessageCallback([this](BinaryMessage msg) {handleMessage(msg);});
     this->handler = &handler;
+    transport.registerDisconnectedCallback([this]{this->handler->handleDisconnected();});
 }
 
 void BtsPort::stop()
 {
+    transport.registerDisconnectedCallback(nullptr);
     transport.registerMessageCallback(nullptr);
     handler = nullptr;
 }
@@ -49,6 +51,7 @@ void BtsPort::handleMessage(BinaryMessage msg)
                 handler->handleAttachReject();
             break;
         }
+
         default:
             logger.logError("unknow message: ", msgId, ", from: ", from);
 
@@ -72,5 +75,14 @@ void BtsPort::sendAttachRequest(common::BtsId btsId)
 
 
 }
+
+void BtsPort::sendSms(common::PhoneNumber to, const std::string& text)
+{
+    logger.logDebug("sendSms to: ", to, ", text: ", text);
+    common::OutgoingMessage msg{common::MessageId::Sms, phoneNumber, to};
+    msg.writeText(text);
+    transport.sendMessage(msg.getMessage());
+}
+
 
 }

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Messages/PhoneNumber.hpp"
 
 namespace ue
 {
@@ -8,6 +8,7 @@ class IUserEventsHandler
 {
 public:
     virtual ~IUserEventsHandler() = default;
+    virtual void handleComposeSms(common::PhoneNumber to, const std::string &text) = 0;
 };
 
 class IUserPort
@@ -18,6 +19,8 @@ public:
     virtual void showNotConnected() = 0;
     virtual void showConnecting() = 0;
     virtual void showConnected() = 0;
+
+
 };
 
 }

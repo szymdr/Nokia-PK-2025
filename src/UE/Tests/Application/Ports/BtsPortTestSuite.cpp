@@ -22,6 +22,7 @@ protected:
     StrictMock<IBtsEventsHandlerMock> handlerMock;
     StrictMock<common::ITransportMock> transportMock;
     common::ITransport::MessageCallback messageCallback;
+    common::ITransport::DisconnectedCallback disconnectedCallback;
 
     BtsPort objectUnderTest{loggerMock, transportMock, PHONE_NUMBER};
 
@@ -29,12 +30,15 @@ protected:
     {
         EXPECT_CALL(transportMock, registerMessageCallback(_))
                 .WillOnce(SaveArg<0>(&messageCallback));
+        EXPECT_CALL(transportMock, registerDisconnectedCallback(_))
+                .WillOnce(SaveArg<0>(&disconnectedCallback));
         objectUnderTest.start(handlerMock);
     }
     ~BtsPortTestSuite()
     {
 
         EXPECT_CALL(transportMock, registerMessageCallback(IsNull()));
+        EXPECT_CALL(transportMock, registerDisconnectedCallback(IsNull()));
         objectUnderTest.stop();
     }
 };
@@ -48,6 +52,11 @@ TEST_F(BtsPortTestSuite, shallIgnoreWrongMessage)
     common::OutgoingMessage wrongMsg{};
     wrongMsg.writeBtsId(BTS_ID);
     messageCallback(wrongMsg.getMessage());
+}
+
+TEST_F(BtsPortTestSuite, shallHandleDisconnected){
+    EXPECT_CALL(handlerMock,handleDisconnected());
+    disconnectedCallback();
 }
 
 TEST_F(BtsPortTestSuite, shallHandleSib)

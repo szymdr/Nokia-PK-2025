@@ -1,0 +1,399 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "UE/Tests/Application/UeApplicationUT.exe"
+		},
+		{
+			"path" : "UE/Tests/Application/UeApplicationUT.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_link_gtest",
+			"include_directories",
+			"set_gtest_options"
+		],
+		"files" : 
+		[
+			"UE/Tests/Application/CMakeLists.txt",
+			"internal_commands.cmake",
+			"googletest/googlemock/CMakeLists.txt",
+			"UE/Application/CMakeLists.txt",
+			"UE/CMakeLists.txt",
+			"UE/Tests/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 35,
+				"parent" : 4
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 105,
+				"parent" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 102,
+				"parent" : 6
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 3,
+				"line" : 9,
+				"parent" : 9
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 12,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 13,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 14,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 5,
+				"line" : 6,
+				"parent" : 17
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 28,
+				"parent" : 18
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 29,
+				"parent" : 18
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 30,
+				"parent" : 18
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 31,
+				"parent" : 18
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -Og  -g -std=gnu++20 -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/cmake-build-debug-mingw/UE/Tests/Application"
+				},
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/Tests/Application"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/Application"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/ApplicationEnvironment"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/../COMMON"
+				},
+				{
+					"backtrace" : 15,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/../COMMON/Tests"
+				},
+				{
+					"backtrace" : 16,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/Tests"
+				},
+				{
+					"backtrace" : 19,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googletest/include"
+				},
+				{
+					"backtrace" : 20,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googlemock/include"
+				},
+				{
+					"backtrace" : 21,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googletest"
+				},
+				{
+					"backtrace" : 22,
+					"isSystem" : true,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/googletest/googlemock"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					3
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "gmock::@d68da25237a7ca2351af"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "gmock_main::@d68da25237a7ca2351af"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "gtest::@f95b5c00bd49b3b4698d"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "UeApplication::@73ff395ed0ec3d5dc1b3"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "Common::@1b08b490bb01f627c501"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "CommonUtMocks::@621852611d1949b737bb"
+		}
+	],
+	"id" : "UeApplicationUT::@9370e5ca99858f865f6f",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g -Og  -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "UE\\Application\\libUeApplication.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "COMMON\\Tests\\Mocks\\libCommonUtMocks.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "lib\\libgmock_maind.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "lib\\libgmockd.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "lib\\libgtestd.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "COMMON\\libCommon.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "UeApplicationUT",
+	"nameOnDisk" : "UeApplicationUT.exe",
+	"paths" : 
+	{
+		"build" : "UE/Tests/Application",
+		"source" : "UE/Tests/Application"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/ApplicationTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Mocks/IApplicationEnvironmentMock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Mocks/IBtsPortMock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Mocks/ITimerPortMock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Mocks/IUeGuiMock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Mocks/IUserPortMock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Ports/BtsPortTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Ports/TimerPortTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/Tests/Application/Ports/UserPortTestSuite.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

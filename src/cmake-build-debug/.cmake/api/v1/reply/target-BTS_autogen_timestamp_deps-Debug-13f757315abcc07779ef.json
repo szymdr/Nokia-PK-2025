@@ -1,0 +1,42 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"BTS/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "BtsApplication::@d21e7aabee1056d6b140"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "BtsApplicationEnvironment::@12c5a2ea5395b2f3ac8f"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "QtBtsApplicationEnvironment::@9a3b473017da7115b8c3"
+		}
+	],
+	"id" : "BTS_autogen_timestamp_deps::@f39cecd0a284e7089d17",
+	"isGeneratorProvided" : true,
+	"name" : "BTS_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "BTS",
+		"source" : "BTS"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

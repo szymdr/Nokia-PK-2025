@@ -1,0 +1,183 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "UE/ApplicationEnvironment/libUeApplicationEnvironment.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"UE/ApplicationEnvironment/CMakeLists.txt",
+			"UE/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 12,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 14,
+				"parent" : 2
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -Og  -g -std=gnu++20 -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/cmake-build-debug-mingw/UE/ApplicationEnvironment"
+				},
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/ApplicationEnvironment"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/Application"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/../COMMON"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8
+			]
+		}
+	],
+	"id" : "UeApplicationEnvironment::@4abf5fbca927f03aabc9",
+	"name" : "UeApplicationEnvironment",
+	"nameOnDisk" : "libUeApplicationEnvironment.a",
+	"paths" : 
+	{
+		"build" : "UE/ApplicationEnvironment",
+		"source" : "UE/ApplicationEnvironment"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/ApplicationEnvironmentFactory.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/IApplicationEnvironment.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/ITransport.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/IUeGui.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/UeGui/ICallMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/UeGui/IDialMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/UeGui/IListViewMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/UeGui/ISmsComposeMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/ApplicationEnvironment/UeGui/ITextMode.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

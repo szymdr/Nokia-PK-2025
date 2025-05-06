@@ -20,6 +20,12 @@ public:
     void handleSib(common::BtsId btsId) override;
     void handleAttachAccept() override;
     void handleAttachReject() override;
+    void handleDisconnected() override;
+
+    void handleConstructSms(common::PhoneNumber from, const std::string& text) override;
+
+
+
 
 protected:
     Context& context;
