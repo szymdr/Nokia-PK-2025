@@ -18,17 +18,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Remove existing Qt directory
-        run: sudo rm -rf /home/runner/work/Nokia-PK-2025/Qt && rm -rf ~/Qt
+      - name: Clean Qt directory
+        run: |
+          if [ -d "/home/runner/work/Nokia-PK-2025/Qt/" ]; then
+          rm -rf /home/runner/work/Nokia-PK-2025/Qt/
+          fi
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y clang-tidy cmake ninja-build
 
-      - name: Install Qt5
+      - name: Install Qt
         uses: jurplel/install-qt-action@v3
-        with:
-          version: '5.15.2'
-          modules: 'qtbase qtdeclarative'
 
       - name: Set Qt5Widgets_DIR
         run: echo "Qt5Widgets_DIR=/home/runner/work/Nokia-PK-2025/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets" >> $GITHUB_ENV
