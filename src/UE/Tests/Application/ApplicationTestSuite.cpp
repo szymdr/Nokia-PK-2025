@@ -70,7 +70,7 @@ TEST_F(ApplicationConnectingTestSuite, shallConnectOnAttachAccept)
     objectUnderTest.handleAttachReject();
 }
 
-struct ApplicationConnectedTestSuite : ApplicationNotConnectedTestSuite
+struct ApplicationConnectedTestSuite : ApplicationConnectingTestSuite
 {
     ApplicationConnectedTestSuite();
 };
