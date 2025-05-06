@@ -45,4 +45,24 @@ void Application::handleDisconnected()
     context.state->handleDisconnected();
 }
 
+void Application::handleCallRequest(common::PhoneNumber phoneNumber)
+{
+    context.state->handleCallRequest(phoneNumber);
+}
+void Application::handleUserAcceptCall()
+{
+    context.state->handleUserAcceptCall();
+}
+
+void Application::handleUserRejectCall()
+{
+    context.state->handleUserRejectCall();
+}
+
+void Application::handleUnknownRecipient(common::PhoneNumber phoneNumber)
+{
+    context.state->handleUnknownRecipient(phoneNumber);
+}
+
+
 }
