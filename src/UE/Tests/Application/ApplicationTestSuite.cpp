@@ -86,9 +86,11 @@ ApplicationConnectedTestSuite::ApplicationConnectedTestSuite() {
     objectUnderTest.handleAttachAccept();
 }
 
-TEST_F(ApplicationConnectedTestSuite, shallHandleDisconnect) {
+TEST_F(ApplicationConnectedTestSuite, shallHandleDisconnect) 
+{
 EXPECT_CALL(userPortMock, showNotConnected());
 objectUnderTest.handleDisconnected();
+}
 
     TEST_F(ApplicationConnectingTestSuite, shallDisConnectOnTimeout)
 {
