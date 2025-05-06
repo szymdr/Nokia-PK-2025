@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Remove existing Qt directory
         run: sudo rm -rf /home/runner/work/Nokia-PK-2025/Qt && rm -rf ~/Qt
@@ -25,7 +25,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang-tidy cmake ninja-build
 
       - name: Install Qt5
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           version: '5.15.2'
           modules: 'qtbase qtdeclarative'
