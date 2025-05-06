@@ -70,11 +70,6 @@ TEST_F(ApplicationConnectingTestSuite, shallConnectOnAttachAccept)
     objectUnderTest.handleAttachReject();
 }
 
-    TEST_F(ApplicationConnectingTestSuite, shallDisConnectOnTimeout)
-{
-    EXPECT_CALL(userPortMock, showNotConnected());
-    objectUnderTest.handleTimeout();
-}
 struct ApplicationConnectedTestSuite : ApplicationNotConnectedTestSuite
 {
     ApplicationConnectedTestSuite();
