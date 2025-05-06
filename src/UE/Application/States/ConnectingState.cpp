@@ -17,13 +17,13 @@ void ConnectingState::handleAttachAccept()
     context.setState<ConnectedState>();
 }
 
-    void ConnectingState::handleAttachReject()
+void ConnectingState::handleAttachReject()
 {
     context.timer.stopTimer();
     context.setState<NotConnectedState>();
 }
 
-    void ConnectingState::handleTimeout()
+void ConnectingState::handleTimeout()
 {
     context.setState<NotConnectedState>();
 }
