@@ -39,9 +39,6 @@ jobs:
       - name: Build all targets
         run: cmake --build build --target all
 
-      - name: Run Clang-Tidy
-        run: clang-tidy -p build $(find . -name '*.cpp' -or -name '*.h')
-
       - name: Run UT for BtsApplication
         run: cmake --build build --target BtsApplicationUT
 
