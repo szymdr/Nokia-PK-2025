@@ -51,5 +51,7 @@ void BaseState::handleUnknownRecipient(common::PhoneNumber phoneNumber)
 {
     logger.logError("Unexpected: handleUnknownRecipient: ", phoneNumber);
 }
-
+void BaseState::handleDisconnected(){
+    logger.logError("Uexpected: handleDisconnected");
+}
 }

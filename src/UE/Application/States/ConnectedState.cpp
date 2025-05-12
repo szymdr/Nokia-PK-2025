@@ -1,4 +1,5 @@
 #include "ConnectedState.hpp"
+#include "NotConnectedState.hpp"
 #include "TalkingState.hpp"
 
 namespace ue
@@ -9,7 +10,9 @@ ConnectedState::ConnectedState(Context &context)
 {
     context.user.showConnected();
 }
-
+void ConnectedState::handleDisconnected(){
+    context.setState<NotConnectedState>();
+}
     ConnectedState::~ConnectedState() = default;
 
 void ConnectedState::handleCallRequest(common::PhoneNumber number)

@@ -20,6 +20,7 @@ public:
     void handleSib(common::BtsId btsId) override;
     void handleAttachAccept() override;
     void handleAttachReject() override;
+    void handleDisconnected() override;
 
     // IUserEventsHandler interface
     void handleCallRequest(common::PhoneNumber phoneNumber) override;
