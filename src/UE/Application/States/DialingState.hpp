@@ -18,7 +18,9 @@ namespace ue
         void onEnter() override;
         void handleDialAction() override;
 
-        void handleCallAccept();
+        void handleCallAccept() override;
+        void handleCallDrop() override;
+        void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
     private:
         common::PhoneNumber phoneNumber;
     };

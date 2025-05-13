@@ -1,8 +1,6 @@
 #include "DialingState.hpp"
 #include "ConnectedState.hpp"
 #include "TalkingState.hpp"
-#include "WaitingForCallAcceptState.hpp"
-
 namespace ue
 {
 
@@ -19,11 +17,11 @@ namespace ue
     {
         context.bts.sendCallRequest(phoneNumber);
         context.timer.startTimer(std::chrono::seconds(60));
-        context.setState<WaitingForCallAcceptState>(phoneNumber);
     }
 
     void DialingState::handleUserRejectCall()
     {
+        context.bts.sendCallDrop(phoneNumber);
         context.setState<ConnectedState>();
     }
 
@@ -45,14 +43,27 @@ void DialingState::handleDialAction()
 
         context.bts.sendCallRequest(toNumber);
         context.timer.startTimer(std::chrono::seconds(60));
-        context.setState<WaitingForCallAcceptState>(toNumber);
 }
 
 void DialingState::handleCallAccept()
 {
-    logger.logDebug("DialingState: Call accepted");
+    context.timer.stopTimer();
     context.user.showTalking();
     context.setState<TalkingState>();
+}
+
+void DialingState::handleCallDrop()
+{
+    context.timer.stopTimer();
+    context.user.showAlert("Call dropped");
+    context.setState<ConnectedState>();
+}
+
+void DialingState::handleUnknownRecipient(common::PhoneNumber phoneNumber)
+{
+    context.timer.stopTimer();
+    context.user.showAlert("Peer UE not connected");
+    context.setState<ConnectedState>();
 }
 
 }
