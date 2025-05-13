@@ -40,4 +40,10 @@ namespace ue
         context.setState<DialingState>(phoneNumber);
     }
 
+void WaitingForCallAcceptState::handleUserAcceptCall()
+{
+    logger.logDebug("WaitingForCallAcceptState: Ignoring handleUserAcceptCall");
+        context.user.showTalking();
+}
+
 }

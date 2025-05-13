@@ -29,10 +29,7 @@ namespace ue
 
     void DialingState::onEnter()
 {
-    logger.logDebug("DialingState: Entered");
-    context.bts.sendCallRequest(phoneNumber);
-    context.timer.startTimer(std::chrono::seconds(60));
-    context.user.showDialing();
+    this->handleDialAction();
 }
 
 void DialingState::handleTimeout()
@@ -43,10 +40,12 @@ void DialingState::handleTimeout()
 
 void DialingState::handleDialAction()
 {
-        logger.logDebug("DialingState: handleDialAction triggered");
-        context.bts.sendCallRequest(phoneNumber);
+        auto toNumber = context.user.getDialedPhoneNumber();
+        logger.logDebug("DialingState: handleDialAction, dialing: ", toNumber);
+
+        context.bts.sendCallRequest(toNumber);
         context.timer.startTimer(std::chrono::seconds(60));
-        context.setState<WaitingForCallAcceptState>(phoneNumber);
+        context.setState<WaitingForCallAcceptState>(toNumber);
 }
 
 void DialingState::handleCallAccept()
