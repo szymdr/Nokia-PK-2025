@@ -1,16 +1,20 @@
 #pragma once
 
-#include "Ports/ITimerPort.hpp"
 #include "Ports/IBtsPort.hpp"
 #include "Ports/IUserPort.hpp"
-
+#include "Ports/ITimerPort.hpp"
 
 namespace ue
 {
 
-class IEventsHandler : public IBtsEventsHandler,
+    class IEventsHandler : public IBtsEventsHandler,
                        public IUserEventsHandler,
                        public ITimerEventsHandler
-{};
+    {
+    public:
+        virtual void handleConstructSms(common::PhoneNumber to, const std::string& text) = 0;
+        virtual void handleSms(common::PhoneNumber from, const std::string& text) = 0;
+    };
+
 
 }

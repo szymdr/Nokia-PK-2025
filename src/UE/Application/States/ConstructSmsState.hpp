@@ -9,16 +9,11 @@ namespace ue
     class ConstructSmsState : public BaseState
     {
     public:
-        ConstructSmsState(Context& context, common::PhoneNumber to, const std::string &text);
-
-
-        void handleConstructSms(common::PhoneNumber to, const std::string &text);
+        ConstructSmsState(Context& context, common::PhoneNumber to, const std::string& text);
 
     private:
         common::PhoneNumber to;
         std::string message;
     };
-
-
 
 }

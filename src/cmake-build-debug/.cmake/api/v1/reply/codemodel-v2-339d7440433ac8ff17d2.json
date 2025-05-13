@@ -1,0 +1,1024 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						4,
+						12,
+						20
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "googletest",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-googletest-Debug-294c64d4885f2a55f3f7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "googletest"
+				},
+				{
+					"build" : "googletest/googlemock",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-googletest.googlemock-Debug-42914cefc7ea45372b29.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "googletest/googlemock",
+					"targetIndexes" : 
+					[
+						33,
+						34
+					]
+				},
+				{
+					"build" : "googletest/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-googletest.googletest-Debug-82bf2a54917280bc0b3e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "googletest/googletest",
+					"targetIndexes" : 
+					[
+						35,
+						36
+					]
+				},
+				{
+					"build" : "UE",
+					"childIndexes" : 
+					[
+						5,
+						6,
+						7,
+						10
+					],
+					"jsonFile" : "directory-UE-Debug-5f781442e6e92eded78d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "UE",
+					"targetIndexes" : 
+					[
+						27,
+						28,
+						29
+					]
+				},
+				{
+					"build" : "UE/Application",
+					"jsonFile" : "directory-UE.Application-Debug-e7bd6237c0c25d81343c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 5,
+					"source" : "UE/Application",
+					"targetIndexes" : 
+					[
+						30
+					]
+				},
+				{
+					"build" : "UE/ApplicationEnvironment",
+					"jsonFile" : "directory-UE.ApplicationEnvironment-Debug-3d67b33f9418483cbf65.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 6,
+					"source" : "UE/ApplicationEnvironment",
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"build" : "UE/QtApplicationEnvironment",
+					"childIndexes" : 
+					[
+						8,
+						9
+					],
+					"jsonFile" : "directory-UE.QtApplicationEnvironment-Debug-24d5d3873c9f9fd6d838.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 7,
+					"source" : "UE/QtApplicationEnvironment",
+					"targetIndexes" : 
+					[
+						18,
+						19,
+						20
+					]
+				},
+				{
+					"build" : "UE/QtApplicationEnvironment/GUI",
+					"jsonFile" : "directory-UE.QtApplicationEnvironment.GUI-Debug-9cfa70b681dae593a947.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 8,
+					"source" : "UE/QtApplicationEnvironment/GUI",
+					"targetIndexes" : 
+					[
+						21,
+						22,
+						23
+					]
+				},
+				{
+					"build" : "UE/QtApplicationEnvironment/Transport",
+					"jsonFile" : "directory-UE.QtApplicationEnvironment.Transport-Debug-2679ba2fbae4893a4f1a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 9,
+					"source" : "UE/QtApplicationEnvironment/Transport",
+					"targetIndexes" : 
+					[
+						24,
+						25,
+						26
+					]
+				},
+				{
+					"build" : "UE/Tests",
+					"childIndexes" : 
+					[
+						11
+					],
+					"jsonFile" : "directory-UE.Tests-Debug-85060a19a2c4ca8dcf39.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 10,
+					"source" : "UE/Tests"
+				},
+				{
+					"build" : "UE/Tests/Application",
+					"jsonFile" : "directory-UE.Tests.Application-Debug-51f06423909636a16837.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 10,
+					"projectIndex" : 11,
+					"source" : "UE/Tests/Application",
+					"targetIndexes" : 
+					[
+						32
+					]
+				},
+				{
+					"build" : "BTS",
+					"childIndexes" : 
+					[
+						13,
+						14,
+						15,
+						18
+					],
+					"jsonFile" : "directory-BTS-Debug-e350ad956dd4b16fe8d4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 12,
+					"source" : "BTS",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "BTS/Application",
+					"jsonFile" : "directory-BTS.Application-Debug-f56a02e75b79c5b493a2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 12,
+					"projectIndex" : 13,
+					"source" : "BTS/Application",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "BTS/ApplicationEnvironment",
+					"jsonFile" : "directory-BTS.ApplicationEnvironment-Debug-b8fee0451fca268df31e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 12,
+					"projectIndex" : 14,
+					"source" : "BTS/ApplicationEnvironment",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "BTS/QtApplicationEnvironment",
+					"childIndexes" : 
+					[
+						16,
+						17
+					],
+					"jsonFile" : "directory-BTS.QtApplicationEnvironment-Debug-dece354d0df5cc80c1e4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 12,
+					"projectIndex" : 15,
+					"source" : "BTS/QtApplicationEnvironment",
+					"targetIndexes" : 
+					[
+						9,
+						10,
+						11
+					]
+				},
+				{
+					"build" : "BTS/QtApplicationEnvironment/Console",
+					"jsonFile" : "directory-BTS.QtApplicationEnvironment.Console-Debug-39de97ec0f80dd1f7b3d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 15,
+					"projectIndex" : 16,
+					"source" : "BTS/QtApplicationEnvironment/Console",
+					"targetIndexes" : 
+					[
+						12,
+						13,
+						14
+					]
+				},
+				{
+					"build" : "BTS/QtApplicationEnvironment/Transport",
+					"jsonFile" : "directory-BTS.QtApplicationEnvironment.Transport-Debug-17c9ad457051a63d48ac.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 15,
+					"projectIndex" : 17,
+					"source" : "BTS/QtApplicationEnvironment/Transport",
+					"targetIndexes" : 
+					[
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "BTS/Tests",
+					"childIndexes" : 
+					[
+						19
+					],
+					"jsonFile" : "directory-BTS.Tests-Debug-5e731d8aee921a97e731.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 12,
+					"projectIndex" : 18,
+					"source" : "BTS/Tests"
+				},
+				{
+					"build" : "BTS/Tests/Application",
+					"jsonFile" : "directory-BTS.Tests.Application-Debug-ad2cebce7822444acb24.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 18,
+					"projectIndex" : 19,
+					"source" : "BTS/Tests/Application",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "COMMON",
+					"childIndexes" : 
+					[
+						21
+					],
+					"jsonFile" : "directory-COMMON-Debug-7f73fda0b12e85c0df91.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 20,
+					"source" : "COMMON",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "COMMON/Tests",
+					"childIndexes" : 
+					[
+						22
+					],
+					"jsonFile" : "directory-COMMON.Tests-Debug-30d066b03741bd820fd7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 20,
+					"projectIndex" : 21,
+					"source" : "COMMON/Tests",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "COMMON/Tests/Mocks",
+					"jsonFile" : "directory-COMMON.Tests.Mocks-Debug-89db795c63c64813ecac.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 21,
+					"projectIndex" : 22,
+					"source" : "COMMON/Tests/Mocks",
+					"targetIndexes" : 
+					[
+						8
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						4,
+						12,
+						20
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CPP_Workshop"
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						33,
+						34
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						35,
+						36
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						5,
+						6,
+						7,
+						10
+					],
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "UE",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						27,
+						28,
+						29
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "UeApplication",
+					"parentIndex" : 4,
+					"targetIndexes" : 
+					[
+						30
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "UeApplicationEnvironment",
+					"parentIndex" : 4,
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						8,
+						9
+					],
+					"directoryIndexes" : 
+					[
+						7
+					],
+					"name" : "QtUeApplicationEnvironment",
+					"parentIndex" : 4,
+					"targetIndexes" : 
+					[
+						18,
+						19,
+						20
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						8
+					],
+					"name" : "QtUeGUI",
+					"parentIndex" : 7,
+					"targetIndexes" : 
+					[
+						21,
+						22,
+						23
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						9
+					],
+					"name" : "QtUeTransport",
+					"parentIndex" : 7,
+					"targetIndexes" : 
+					[
+						24,
+						25,
+						26
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						11
+					],
+					"directoryIndexes" : 
+					[
+						10
+					],
+					"name" : "UE_Tests",
+					"parentIndex" : 4
+				},
+				{
+					"directoryIndexes" : 
+					[
+						11
+					],
+					"name" : "UeApplicationUT",
+					"parentIndex" : 10,
+					"targetIndexes" : 
+					[
+						32
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						13,
+						14,
+						15,
+						18
+					],
+					"directoryIndexes" : 
+					[
+						12
+					],
+					"name" : "BTS",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						13
+					],
+					"name" : "BtsApplication",
+					"parentIndex" : 12,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						14
+					],
+					"name" : "BtsApplicationEnvironment",
+					"parentIndex" : 12,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						16,
+						17
+					],
+					"directoryIndexes" : 
+					[
+						15
+					],
+					"name" : "QtBtsApplicationEnvironment",
+					"parentIndex" : 12,
+					"targetIndexes" : 
+					[
+						9,
+						10,
+						11
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						16
+					],
+					"name" : "QtBtsConsole",
+					"parentIndex" : 15,
+					"targetIndexes" : 
+					[
+						12,
+						13,
+						14
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						17
+					],
+					"name" : "QtBtsTransport",
+					"parentIndex" : 15,
+					"targetIndexes" : 
+					[
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						19
+					],
+					"directoryIndexes" : 
+					[
+						18
+					],
+					"name" : "BTS_Tests",
+					"parentIndex" : 12
+				},
+				{
+					"directoryIndexes" : 
+					[
+						19
+					],
+					"name" : "BtsApplicationUT",
+					"parentIndex" : 18,
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						21
+					],
+					"directoryIndexes" : 
+					[
+						20
+					],
+					"name" : "Common",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						22
+					],
+					"directoryIndexes" : 
+					[
+						21
+					],
+					"name" : "COMMON_UT",
+					"parentIndex" : 20,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						22
+					],
+					"name" : "CommonUtMocks",
+					"parentIndex" : 21,
+					"targetIndexes" : 
+					[
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 12,
+					"id" : "BTS::@f39cecd0a284e7089d17",
+					"jsonFile" : "target-BTS-Debug-187ce71e97eac2942b5a.json",
+					"name" : "BTS",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "BTS_autogen::@f39cecd0a284e7089d17",
+					"jsonFile" : "target-BTS_autogen-Debug-e6210ad02a09553326c0.json",
+					"name" : "BTS_autogen",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "BTS_autogen_timestamp_deps::@f39cecd0a284e7089d17",
+					"jsonFile" : "target-BTS_autogen_timestamp_deps-Debug-9151b47134ae78e97eb3.json",
+					"name" : "BTS_autogen_timestamp_deps",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "BtsApplication::@d21e7aabee1056d6b140",
+					"jsonFile" : "target-BtsApplication-Debug-9cea4250c18d7c035d7f.json",
+					"name" : "BtsApplication",
+					"projectIndex" : 13
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "BtsApplicationEnvironment::@12c5a2ea5395b2f3ac8f",
+					"jsonFile" : "target-BtsApplicationEnvironment-Debug-9f57fad8ed96b8471568.json",
+					"name" : "BtsApplicationEnvironment",
+					"projectIndex" : 14
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "BtsApplicationUT::@236c889447ed2abea744",
+					"jsonFile" : "target-BtsApplicationUT-Debug-82396eb5968eb7f46ed3.json",
+					"name" : "BtsApplicationUT",
+					"projectIndex" : 19
+				},
+				{
+					"directoryIndex" : 21,
+					"id" : "COMMON_UT::@aaa3ca18eb9801d43fac",
+					"jsonFile" : "target-COMMON_UT-Debug-8774cc3c037c53b5954c.json",
+					"name" : "COMMON_UT",
+					"projectIndex" : 21
+				},
+				{
+					"directoryIndex" : 20,
+					"id" : "Common::@1b08b490bb01f627c501",
+					"jsonFile" : "target-Common-Debug-77886741d0950cb5e649.json",
+					"name" : "Common",
+					"projectIndex" : 20
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "CommonUtMocks::@621852611d1949b737bb",
+					"jsonFile" : "target-CommonUtMocks-Debug-43dac98fae267536bed4.json",
+					"name" : "CommonUtMocks",
+					"projectIndex" : 22
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "QtBtsApplicationEnvironment::@9a3b473017da7115b8c3",
+					"jsonFile" : "target-QtBtsApplicationEnvironment-Debug-e0aba04356b4d8d6d3d5.json",
+					"name" : "QtBtsApplicationEnvironment",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "QtBtsApplicationEnvironment_autogen::@9a3b473017da7115b8c3",
+					"jsonFile" : "target-QtBtsApplicationEnvironment_autogen-Debug-ac2c615df5a3e606fdbb.json",
+					"name" : "QtBtsApplicationEnvironment_autogen",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "QtBtsApplicationEnvironment_autogen_timestamp_deps::@9a3b473017da7115b8c3",
+					"jsonFile" : "target-QtBtsApplicationEnvironment_autogen_timestamp_deps-Debug-5e067353b25660773c5e.json",
+					"name" : "QtBtsApplicationEnvironment_autogen_timestamp_deps",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "QtBtsConsole::@0dc30363bfe1f55ba2d1",
+					"jsonFile" : "target-QtBtsConsole-Debug-c79a5da9d472924565d6.json",
+					"name" : "QtBtsConsole",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "QtBtsConsole_autogen::@0dc30363bfe1f55ba2d1",
+					"jsonFile" : "target-QtBtsConsole_autogen-Debug-452b356b272aa1f46a21.json",
+					"name" : "QtBtsConsole_autogen",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "QtBtsConsole_autogen_timestamp_deps::@0dc30363bfe1f55ba2d1",
+					"jsonFile" : "target-QtBtsConsole_autogen_timestamp_deps-Debug-6e6f308747b18fd017b0.json",
+					"name" : "QtBtsConsole_autogen_timestamp_deps",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "QtBtsTransport::@7d26c8b28b076815da90",
+					"jsonFile" : "target-QtBtsTransport-Debug-1710be39dc09d42ae87f.json",
+					"name" : "QtBtsTransport",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "QtBtsTransport_autogen::@7d26c8b28b076815da90",
+					"jsonFile" : "target-QtBtsTransport_autogen-Debug-fd49eaf4f80df5b0e4f3.json",
+					"name" : "QtBtsTransport_autogen",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "QtBtsTransport_autogen_timestamp_deps::@7d26c8b28b076815da90",
+					"jsonFile" : "target-QtBtsTransport_autogen_timestamp_deps-Debug-1eca604e3dfebf20b826.json",
+					"name" : "QtBtsTransport_autogen_timestamp_deps",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "QtUeApplicationEnvironment::@da690c1b2f54b815ce33",
+					"jsonFile" : "target-QtUeApplicationEnvironment-Debug-4030e513127387b20be7.json",
+					"name" : "QtUeApplicationEnvironment",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "QtUeApplicationEnvironment_autogen::@da690c1b2f54b815ce33",
+					"jsonFile" : "target-QtUeApplicationEnvironment_autogen-Debug-e6520ef7fbe977b84baa.json",
+					"name" : "QtUeApplicationEnvironment_autogen",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "QtUeApplicationEnvironment_autogen_timestamp_deps::@da690c1b2f54b815ce33",
+					"jsonFile" : "target-QtUeApplicationEnvironment_autogen_timestamp_deps-Debug-336a8aacb6002abea2c0.json",
+					"name" : "QtUeApplicationEnvironment_autogen_timestamp_deps",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "QtUeGUI::@2e2ff36e4f635c1eed24",
+					"jsonFile" : "target-QtUeGUI-Debug-ae01385870ea5f4da010.json",
+					"name" : "QtUeGUI",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "QtUeGUI_autogen::@2e2ff36e4f635c1eed24",
+					"jsonFile" : "target-QtUeGUI_autogen-Debug-b8bbcf2a4f762dde0ccd.json",
+					"name" : "QtUeGUI_autogen",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "QtUeGUI_autogen_timestamp_deps::@2e2ff36e4f635c1eed24",
+					"jsonFile" : "target-QtUeGUI_autogen_timestamp_deps-Debug-9cc2b99524e58c39422c.json",
+					"name" : "QtUeGUI_autogen_timestamp_deps",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "QtUeTransport::@d4f48aa2cb2df08c3486",
+					"jsonFile" : "target-QtUeTransport-Debug-434a59925fa59d6921ed.json",
+					"name" : "QtUeTransport",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "QtUeTransport_autogen::@d4f48aa2cb2df08c3486",
+					"jsonFile" : "target-QtUeTransport_autogen-Debug-0dd202555285642fa1a4.json",
+					"name" : "QtUeTransport_autogen",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "QtUeTransport_autogen_timestamp_deps::@d4f48aa2cb2df08c3486",
+					"jsonFile" : "target-QtUeTransport_autogen_timestamp_deps-Debug-4e4eb0a9d700ba78852f.json",
+					"name" : "QtUeTransport_autogen_timestamp_deps",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "UE::@030a2062f74b9d54b6b0",
+					"jsonFile" : "target-UE-Debug-d0645d45081394fe4600.json",
+					"name" : "UE",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "UE_autogen::@030a2062f74b9d54b6b0",
+					"jsonFile" : "target-UE_autogen-Debug-1916412e857d9e80d64a.json",
+					"name" : "UE_autogen",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "UE_autogen_timestamp_deps::@030a2062f74b9d54b6b0",
+					"jsonFile" : "target-UE_autogen_timestamp_deps-Debug-2262a28875296bf5989c.json",
+					"name" : "UE_autogen_timestamp_deps",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "UeApplication::@73ff395ed0ec3d5dc1b3",
+					"jsonFile" : "target-UeApplication-Debug-4c1c3d9833ba3da697ae.json",
+					"name" : "UeApplication",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "UeApplicationEnvironment::@4abf5fbca927f03aabc9",
+					"jsonFile" : "target-UeApplicationEnvironment-Debug-51e13dfbb3f12723ccf9.json",
+					"name" : "UeApplicationEnvironment",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "UeApplicationUT::@9370e5ca99858f865f6f",
+					"jsonFile" : "target-UeApplicationUT-Debug-030ae77a92f0bbc3d4d8.json",
+					"name" : "UeApplicationUT",
+					"projectIndex" : 11
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock::@d68da25237a7ca2351af",
+					"jsonFile" : "target-gmock-Debug-7e6c14a5c7872d560cd6.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "gmock_main::@d68da25237a7ca2351af",
+					"jsonFile" : "target-gmock_main-Debug-75635ebc75a5c8ea26ec.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest::@f95b5c00bd49b3b4698d",
+					"jsonFile" : "target-gtest-Debug-7dc9644184c99f829276.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gtest_main::@f95b5c00bd49b3b4698d",
+					"jsonFile" : "target-gtest_main-Debug-e33b28d3b991f7ac3b75.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/nchol/Nokia-PK-2025/src/cmake-build-debug",
+		"source" : "C:/Users/nchol/Nokia-PK-2025/src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

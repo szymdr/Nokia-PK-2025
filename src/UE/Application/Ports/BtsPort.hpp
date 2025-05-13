@@ -16,7 +16,7 @@ public:
     void stop();
 
     void sendAttachRequest(common::BtsId) override;
-    void sendSms(common::PhoneNumber to, const std::string& text);
+    void sendSms(common::PhoneNumber, const std::string&) override;
 
 private:
     void handleMessage(BinaryMessage msg);
