@@ -43,7 +43,7 @@ jobs:
         run: ./build/BTS/Tests/Application/BtsApplicationUT
 
       - name: Run UT for COMMON
-        run: ./COMMON/Tests/Application/CommonUT
+        run: ./build/COMMON/Tests/Application/COMMON_UT
 
       - name: Run UT for UeApplication
-        run: ./UE/Tests/Application/UeApplicationUT
+        run: ./build/UE/Tests/Application/UeApplicationUT
