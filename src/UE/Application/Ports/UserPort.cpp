@@ -55,7 +55,23 @@ void UserPort::showConnected()
 
 void UserPort::showIncomingCall(common::PhoneNumber number)
 {
-    std::string msg = gui.setCallMode().getOutgoingText();
+    auto& callMode = gui.setCallMode();
+    callMode.clearIncomingText();
+    callMode.appendIncomingText("Incoming call from: " + to_string(number));
+
+    gui.setAcceptCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallAccept();
+        }
+    });
+
+    gui.setRejectCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallDrop();
+        }
+    });
 }
 
 void UserPort::showDialing()
@@ -74,6 +90,7 @@ void UserPort::showDialing()
 
 void UserPort::showTalking()
 {
+    gui.setCallMode().clearIncomingText();
     gui.setCallMode().appendIncomingText("Talking...");
 }
 
