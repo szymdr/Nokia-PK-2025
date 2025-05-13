@@ -21,7 +21,6 @@ void ConnectedState::handleCallRequest(common::PhoneNumber number)
     callerNumber    = number;
     context.user.showIncomingCall(callerNumber);
     context.timer.startTimer(3000ms);
-    context.bts.sendCallAccept(callerNumber);
 }
 
 void ConnectedState::handleUserAcceptCall()
