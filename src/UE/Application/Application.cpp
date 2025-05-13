@@ -1,5 +1,8 @@
 #include "Application.hpp"
 #include "States/NotConnectedState.hpp"
+#include "States/ConnectedState.hpp"
+
+
 
 namespace ue
 {
@@ -60,5 +63,19 @@ void Application::handleUnknownRecipient(common::PhoneNumber phoneNumber)
     context.state->handleUnknownRecipient(phoneNumber);
 }
 
+    void Application::handleDialAction()
+{
+    context.state->handleDialAction();
+}
+
+    void Application::handleCallAccept()
+{
+    context.state->handleUserAcceptCall();
+}
+
+    void Application::handleCallDrop()
+{
+    context.state->handleUserRejectCall();
+}
 
 }

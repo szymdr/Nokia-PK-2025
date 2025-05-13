@@ -27,6 +27,12 @@ public:
     void handleUserRejectCall() override;
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 
+    void handleDialAction() override;
+    void handleCallAccept() override;
+    void handleCallDrop() override;
+
+    virtual void onEnter() {}
+
 protected:
     Context& context;
     common::PrefixedLogger logger;
