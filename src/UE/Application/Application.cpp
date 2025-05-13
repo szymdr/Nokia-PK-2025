@@ -43,6 +43,10 @@ void Application::handleAttachReject()
 {
     context.state->handleAttachReject();
 }
+void Application::handleDisconnected()
+{
+    context.state->handleDisconnected();
+}
 
 void Application::handleCallRequest(common::PhoneNumber phoneNumber)
 {

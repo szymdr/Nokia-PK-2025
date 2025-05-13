@@ -70,15 +70,32 @@ TEST_F(ApplicationConnectingTestSuite, shallConnectOnAttachAccept)
     objectUnderTest.handleAttachReject();
 }
 
+struct ApplicationConnectedTestSuite : ApplicationConnectingTestSuite
+{
+    ApplicationConnectedTestSuite();
+};
+
+ApplicationConnectedTestSuite::ApplicationConnectedTestSuite() {
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleAttachAccept();
+}
+
+TEST_F(ApplicationConnectedTestSuite, shallHandleDisconnect) 
+{
+EXPECT_CALL(userPortMock, showNotConnected());
+objectUnderTest.handleDisconnected();
+}
+
     TEST_F(ApplicationConnectingTestSuite, shallDisConnectOnTimeout)
 {
     EXPECT_CALL(userPortMock, showNotConnected());
     objectUnderTest.handleTimeout();
 }
 
-struct ApplicationConnectedTestSuite : ApplicationConnectingTestSuite
+struct ApplicationConnectedCallTestSuite : ApplicationConnectingTestSuite
 {
-    ApplicationConnectedTestSuite()
+    ApplicationConnectedCallTestSuite()
     {
         EXPECT_CALL(timerPortMock, stopTimer());
         EXPECT_CALL(userPortMock, showConnected());
@@ -87,7 +104,7 @@ struct ApplicationConnectedTestSuite : ApplicationConnectingTestSuite
     void showIncomingCallAndStartTimeoutOnCallRequest();
 };
 
-void ApplicationConnectedTestSuite::showIncomingCallAndStartTimeoutOnCallRequest()
+void ApplicationConnectedCallTestSuite::showIncomingCallAndStartTimeoutOnCallRequest()
 {
     using namespace std::chrono_literals;
     EXPECT_CALL(userPortMock, showIncomingCall(PHONE_NUMBER));
@@ -95,12 +112,12 @@ void ApplicationConnectedTestSuite::showIncomingCallAndStartTimeoutOnCallRequest
     objectUnderTest.handleCallRequest(PHONE_NUMBER);
 }
 
-TEST_F(ApplicationConnectedTestSuite, shallShowIncomingCallAndStartTimeoutOnCallRequest)
+TEST_F(ApplicationConnectedCallTestSuite, shallShowIncomingCallAndStartTimeoutOnCallRequest)
 {
     showIncomingCallAndStartTimeoutOnCallRequest();
 }
 
-struct ApplicationReceivingCallTestSuite : ApplicationConnectedTestSuite
+struct ApplicationReceivingCallTestSuite : ApplicationConnectedCallTestSuite
 {
     ApplicationReceivingCallTestSuite()
     {

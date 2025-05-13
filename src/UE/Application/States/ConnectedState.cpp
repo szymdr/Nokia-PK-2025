@@ -1,4 +1,5 @@
 #include "ConnectedState.hpp"
+#include "NotConnectedState.hpp"
 #include "TalkingState.hpp"
 #include "ReceivingCallState.hpp"
 
@@ -11,7 +12,9 @@ ConnectedState::ConnectedState(Context &context)
     logger.logDebug("ConnectedState: Entered");
     context.user.showConnected();
 }
-
+void ConnectedState::handleDisconnected(){
+    context.setState<NotConnectedState>();
+}
     ConnectedState::~ConnectedState() = default;
 
 void ConnectedState::handleCallRequest(common::PhoneNumber callerNumber)
