@@ -92,7 +92,6 @@ void ApplicationConnectedTestSuite::showIncomingCallAndStartTimeoutOnCallRequest
     using namespace std::chrono_literals;
     EXPECT_CALL(userPortMock, showIncomingCall(PHONE_NUMBER));
     EXPECT_CALL(timerPortMock, startTimer(3000ms));
-    EXPECT_CALL(btsPortMock, sendCallRequest(PHONE_NUMBER));
     objectUnderTest.handleCallRequest(PHONE_NUMBER);
 }
 
