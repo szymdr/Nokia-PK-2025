@@ -61,8 +61,14 @@ void BtsPort::handleMessage(BinaryMessage msg)
             handler->handleCallAccept();
             break;
         }
+        case common::MessageId::CallRequest:
+        {
+            logger.logDebug("CallRequest received from: ", from);
+            handler->handleCallRequest(from);
+            break;
+        }
         default:
-            logger.logError("unknow message: ", msgId, ", from: ", from);
+            logger.logError("unknown message: ", msgId, ", from: ", from);
 
         }
     }
