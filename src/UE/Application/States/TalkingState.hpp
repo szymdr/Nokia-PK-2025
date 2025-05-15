@@ -12,6 +12,7 @@ public:
     ~TalkingState() override;
     
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
+    void handleCallRequest(common::PhoneNumber phoneNumber) override;
 };
 
 }
