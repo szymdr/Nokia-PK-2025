@@ -46,13 +46,31 @@ void BtsPort::handleMessage(BinaryMessage msg)
         {
             bool accept = reader.readNumber<std::uint8_t>() != 0u;
             if (accept)
+            {
+                logger.logDebug("Attach accepted");
                 handler->handleAttachAccept();
+            }
             else
+            {
+                logger.logDebug("Attach rejected");
                 handler->handleAttachReject();
+            }
+            break;
+        }
+        case common::MessageId::CallAccepted:
+        {
+            logger.logDebug("Call accepted from: ", from, ", to: ", to);
+            handler->handleCallAccept();
+            break;
+        }
+        case common::MessageId::CallRequest:
+        {
+            logger.logDebug("CallRequest received from: ", from);
+            handler->handleCallRequest(from);
             break;
         }
         default:
-            logger.logError("unknow message: ", msgId, ", from: ", from);
+            logger.logError("unknown message: ", msgId, ", from: ", from);
 
         }
     }
@@ -75,7 +93,7 @@ void BtsPort::sendAttachRequest(common::BtsId btsId)
 
 void BtsPort::sendCallRequest(common::PhoneNumber number)
 {
-    logger.logDebug("sendCallRequest: ", number);
+    logger.logDebug("sendCallRequest: from=", phoneNumber, ", to=", number);
     common::OutgoingMessage msg{common::MessageId::CallRequest,
                                 phoneNumber,
                                 number};
@@ -110,5 +128,6 @@ void BtsPort::sendCallReject(common::PhoneNumber number)
     msg.writePhoneNumber(number);
     transport.sendMessage(msg.getMessage());
 }
+
 
 }

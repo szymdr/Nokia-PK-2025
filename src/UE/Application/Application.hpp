@@ -34,6 +34,10 @@ public:
     void handleUserAcceptCall() override;
     void handleUserRejectCall() override;
     void handleUnknownRecipient(PhoneNumber phoneNumber) override;
+
+    void handleDialAction() override;
+    void handleCallAccept() override;
+    void handleCallDrop() override;
 private:
     Context context;
     common::PrefixedLogger logger;

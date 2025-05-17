@@ -12,13 +12,13 @@ namespace ue
 UserPort::UserPort(common::ILogger &logger, IUeGui &gui, common::PhoneNumber phoneNumber)
     : logger(logger, "[USER-PORT]"),
       gui(gui),
-      phoneNumber(phoneNumber)
+      callerNumber(phoneNumber)
 {}
 
 void UserPort::start(IUserEventsHandler &handler)
 {
     this->handler = &handler;
-    gui.setTitle("Nokia " + to_string(phoneNumber));
+    gui.setTitle("Nokia " + to_string(callerNumber));
 }
 
 void UserPort::stop()
@@ -44,18 +44,30 @@ void UserPort::showConnected()
     menu.addSelectionListItem("View SMS", "");
 }
 
-void UserPort::showIncomingCall(common::PhoneNumber number)
+void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
 {
-    std::string msg = gui.setCallMode().getOutgoingText();
-}
+    auto& callMode = gui.setCallMode();
+    callMode.clearIncomingText();
+    callMode.appendIncomingText("Incoming call from: " + to_string(callerNumber));
 
-void UserPort::showDialing()
-{
-    common::PhoneNumber number = gui.setDialMode().getPhoneNumber();
+    gui.setAcceptCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallAccept();
+        }
+    });
+
+    gui.setRejectCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallDrop();
+        }
+    });
 }
 
 void UserPort::showTalking()
 {
+    gui.setCallMode().clearIncomingText();
     gui.setCallMode().appendIncomingText("Talking...");
 }
 
