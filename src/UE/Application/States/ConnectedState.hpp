@@ -13,6 +13,16 @@ public:
 
     ~ConnectedState() override;
 
+
+    void handleUserAcceptCall()    override;
+    void handleUserRejectCall()    override;
+    void handleTimeout()           override;
+
+    void handleDialAction() override;
+
+private:
+    bool waitingForCall{false};
+    common::PhoneNumber callerNumber;
     void handleCallRequest(common::PhoneNumber callerNumber) override;
 };
 
