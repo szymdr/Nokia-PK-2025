@@ -30,9 +30,6 @@ public:
 
     void handleMenuSelection(unsigned index);
 
-    void setAcceptCallback(std::function<void()> callback) override;
-    void setRejectCallback(std::function<void()> callback) override;
-
 private:
     common::PrefixedLogger logger;
     IUeGui& gui;

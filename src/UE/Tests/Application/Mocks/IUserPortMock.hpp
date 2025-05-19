@@ -37,8 +37,6 @@ public:
     MOCK_METHOD(common::PhoneNumber, getDialedPhoneNumber, (), (const, final));
     MOCK_METHOD(void, setDialNumber, (const common::PhoneNumber& number), (final));
 
-    MOCK_METHOD(void, setAcceptCallback, (std::function<void()>), (override));
-    MOCK_METHOD(void, setRejectCallback, (std::function<void()>), (override));
 };
 
 }

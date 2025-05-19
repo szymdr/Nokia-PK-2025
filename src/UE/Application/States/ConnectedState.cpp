@@ -35,7 +35,7 @@ namespace ue
         if (!waitingForCall) return;
         waitingForCall = false;
         context.timer.stopTimer();
-        context.user.showTalking();
+        //context.user.showTalking();
         context.bts.sendCallAccept(callerNumber);
         context.setState<TalkingState>();
     }

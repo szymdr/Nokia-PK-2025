@@ -32,9 +32,6 @@ public:
     virtual common::PhoneNumber getDialedPhoneNumber() const = 0;
 
     virtual void setDialNumber(const common::PhoneNumber& number) = 0;
-
-    virtual void setAcceptCallback(std::function<void()> callback) = 0;
-    virtual void setRejectCallback(std::function<void()> callback) = 0;
 };
 
 }

@@ -48,7 +48,7 @@ void DialingState::handleDialAction()
 void DialingState::handleCallAccept()
 {
     context.timer.stopTimer();
-    context.user.showTalking();
+    //context.user.showTalking();
     context.setState<TalkingState>();
 }
 

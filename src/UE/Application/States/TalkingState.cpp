@@ -9,8 +9,6 @@ TalkingState::TalkingState(Context &context)
   : BaseState(context, "TalkingState")
 {
     context.user.showTalking();
-    context.user.setAcceptCallback(nullptr);
-    context.user.setRejectCallback(nullptr);
 }
 
 TalkingState::~TalkingState() = default;

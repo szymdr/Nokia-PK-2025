@@ -134,14 +134,4 @@ void UserPort::handleMenuSelection(unsigned index)
     }
 }
 
-void UserPort::setAcceptCallback(std::function<void()> callback)
-{
-    gui.setAcceptCallback(callback);
-}
-
-void UserPort::setRejectCallback(std::function<void()> callback)
-{
-    gui.setRejectCallback(callback);
-}
-
 }
