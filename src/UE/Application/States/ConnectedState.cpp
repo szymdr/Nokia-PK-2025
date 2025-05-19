@@ -24,37 +24,8 @@ namespace ue
     void ConnectedState::handleCallRequest(common::PhoneNumber callerNumber)
     {
         using namespace std::chrono_literals;
-        waitingForCall = true;
-        this->callerNumber = callerNumber;
-        context.user.showIncomingCall(callerNumber);
         context.timer.startTimer(3000ms);
-    }
-
-    void ConnectedState::handleUserAcceptCall()
-    {
-        if (!waitingForCall) return;
-        waitingForCall = false;
-        context.timer.stopTimer();
-        //context.user.showTalking();
-        context.bts.sendCallAccept(callerNumber);
-        context.setState<TalkingState>();
-    }
-
-    void ConnectedState::handleUserRejectCall()
-    {
-        if (!waitingForCall) return;
-        waitingForCall = false;
-        context.timer.stopTimer();
-        context.user.showConnected();
-        context.bts.sendCallDrop(callerNumber);
-    }
-
-    void ConnectedState::handleTimeout()
-    {
-        if (!waitingForCall) return;
-        waitingForCall = false;
-        context.user.showConnected();
-        context.bts.sendCallDrop(callerNumber);
+        context.setState<ReceivingCallState>(callerNumber);
     }
 
     void ConnectedState::handleDialAction()
