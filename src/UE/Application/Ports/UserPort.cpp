@@ -12,13 +12,13 @@ namespace ue
 UserPort::UserPort(common::ILogger &logger, IUeGui &gui, common::PhoneNumber phoneNumber)
     : logger(logger, "[USER-PORT]"),
       gui(gui),
-      phoneNumber(phoneNumber)
+      callerNumber(phoneNumber)
 {}
 
 void UserPort::start(IUserEventsHandler &handler)
 {
     this->handler = &handler;
-    gui.setTitle("Nokia " + to_string(phoneNumber));
+    gui.setTitle("Nokia " + to_string(callerNumber));
 }
 
 void UserPort::stop()
@@ -53,11 +53,11 @@ void UserPort::showConnected()
     });
 }
 
-void UserPort::showIncomingCall(common::PhoneNumber number)
+void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
 {
     auto& callMode = gui.setCallMode();
     callMode.clearIncomingText();
-    callMode.appendIncomingText("Incoming call from: " + to_string(number));
+    callMode.appendIncomingText("Incoming call from: " + to_string(callerNumber));
 
     gui.setAcceptCallback([this]() {
         if (handler)

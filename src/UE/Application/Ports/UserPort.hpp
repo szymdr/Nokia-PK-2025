@@ -19,8 +19,7 @@ public:
     void showConnecting() override;
     void showConnected() override;
 
-    void showIncomingCall(common::PhoneNumber phoneNumber) override;
-    void showDialing() override;
+    void showIncomingCall(const common::PhoneNumber callerNumber) override;
     void showTalking() override;
     void showAlert(const std::string& text) override;
 
@@ -36,9 +35,8 @@ public:
 private:
     common::PrefixedLogger logger;
     IUeGui& gui;
-    common::PhoneNumber phoneNumber;
+    common::PhoneNumber callerNumber;
     IUserEventsHandler* handler = nullptr;
-    common::PhoneNumber dialedPhoneNumber;
 };
 
 }

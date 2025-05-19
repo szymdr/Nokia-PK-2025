@@ -17,6 +17,7 @@ public:
     MOCK_METHOD(void, handleSib, (common::BtsId), (final));
     MOCK_METHOD(void, handleAttachAccept, (), (final));
     MOCK_METHOD(void, handleAttachReject, (), (final));
+    MOCK_METHOD(void, handleDisconnected, (), (final));
 
     MOCK_METHOD(void, handleCallRequest, (common::PhoneNumber), (override));
     MOCK_METHOD(void, handleUserAcceptCall, (), (override));

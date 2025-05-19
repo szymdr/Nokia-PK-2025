@@ -40,13 +40,10 @@ jobs:
         run: cmake --build build --target all
 
       - name: Run UT for BtsApplication
-        run: cmake --build build --target BtsApplicationUT
-
-      - name: Run BTS UT
         run: ./build/BTS/Tests/Application/BtsApplicationUT
 
       - name: Run UT for COMMON
-        run: cmake --build build --target COMMON_UT
+        run: ./build/COMMON/Tests/COMMON_UT
 
       - name: Run UT for UeApplication
-        run: cmake --build build --target UeApplicationUT
+        run: ./build/UE/Tests/Application/UeApplicationUT
