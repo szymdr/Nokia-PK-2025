@@ -156,4 +156,47 @@ TEST_F(ApplicationReceivingCallTestSuite, ignoreUnknownPeerAfterReject)
     EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PHONE_NUMBER));
 }
 
+struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
+{
+    const common::PhoneNumber PEER_NUMBER{123};
+
+    ApplicationDialingTestSuite()
+    {
+        EXPECT_CALL(userPortMock, getDialedPhoneNumber()).WillRepeatedly(Return(PEER_NUMBER));
+        EXPECT_CALL(userPortMock, setDialNumber(PEER_NUMBER));
+        EXPECT_CALL(userPortMock, showDialing());
+        objectUnderTest.handleDialAction();
+    }
+};
+
+TEST_F(ApplicationDialingTestSuite, shallSendCallRequestOnAccept)
+{
+    EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
+    EXPECT_CALL(timerPortMock, startTimer(_));
+    objectUnderTest.handleUserAcceptCall();
+}
+
+
+TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnUnknownRecipient)
+{
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(userPortMock, showAlert("Peer UE not connected"));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleUnknownRecipient(PEER_NUMBER);
+}
+
+TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnTimeout)
+{
+    EXPECT_CALL(userPortMock, showAlert("Call timeout"));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleTimeout();
+}
+
+TEST_F(ApplicationDialingTestSuite, shallSendCallDropOnUserReject)
+{
+    EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleUserRejectCall();
+}
+
 }
