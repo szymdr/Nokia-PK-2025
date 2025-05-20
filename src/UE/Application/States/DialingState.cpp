@@ -15,13 +15,15 @@ namespace ue
 
     void DialingState::handleUserAcceptCall()
     {
-        context.bts.sendCallRequest(phoneNumber);
-        context.timer.startTimer(std::chrono::seconds(60));
+        context.timer.stopTimer();
+        context.user.showTalking();
+        context.setState<TalkingState>();
     }
 
     void DialingState::handleUserRejectCall()
     {
-        context.bts.sendCallDrop(phoneNumber);
+        context.timer.stopTimer();
+        context.user.showAlert("Call dropped");
         context.setState<ConnectedState>();
     }
 
@@ -47,9 +49,9 @@ void DialingState::handleDialAction()
 
 void DialingState::handleCallAccept()
 {
-    context.timer.stopTimer();
+     context.timer.stopTimer();
     //context.user.showTalking();
-    context.setState<TalkingState>();
+     context.setState<TalkingState>();
 }
 
 void DialingState::handleCallDrop()

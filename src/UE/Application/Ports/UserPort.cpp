@@ -83,9 +83,22 @@ void UserPort::showDialing()
         {
             dialedPhoneNumber = dialMode.getPhoneNumber();
             logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
+
+            auto& callMode = gui.setCallMode();
+            callMode.clearIncomingText();
+            callMode.appendIncomingText("Dialing to: " + to_string(dialedPhoneNumber));
+
             handler->handleDialAction();
         }
     });
+
+    gui.setRejectCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallDrop();
+        }
+    });
+
 }
 
 void UserPort::showTalking()
