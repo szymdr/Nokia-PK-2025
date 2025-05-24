@@ -113,12 +113,12 @@ void UserPort::showAlert(const std::string &text)
 
 }
 
-    common::PhoneNumber UserPort::getDialedPhoneNumber() const
+common::PhoneNumber UserPort::getDialedPhoneNumber() const
 {
     return dialedPhoneNumber;
 }
 
-    void UserPort::setDialNumber(const common::PhoneNumber& number)
+void UserPort::setDialNumber(const common::PhoneNumber& number)
 {
     //dialedPhoneNumber = number;
     gui.setDialMode();
@@ -138,7 +138,6 @@ void UserPort::handleMenuSelection(unsigned index)
         gui.setListViewMode();
         break;
     case 2:
-        //gui.setDialMode();
         showDialing();
         break;
     default:

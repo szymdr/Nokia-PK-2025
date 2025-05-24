@@ -186,14 +186,14 @@ struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
     }
 };
 
-    TEST_F(ApplicationDialingTestSuite, shallSendCallRequestOnAccept)
-    {
-        EXPECT_CALL(timerPortMock, stopTimer());
-        EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
-        EXPECT_CALL(timerPortMock, startTimer(_));
-        EXPECT_CALL(userPortMock, showTalking());
-        objectUnderTest.handleUserAcceptCall();
-    }
+TEST_F(ApplicationDialingTestSuite, shallSendCallRequestOnAccept)
+{
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
+    EXPECT_CALL(timerPortMock, startTimer(_));
+    EXPECT_CALL(userPortMock, showTalking());
+    objectUnderTest.handleUserAcceptCall();
+}
 
 
 TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnUnknownRecipient)

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Messages/PhoneNumber.hpp>
-#include <functional>
 
 namespace ue
 {
