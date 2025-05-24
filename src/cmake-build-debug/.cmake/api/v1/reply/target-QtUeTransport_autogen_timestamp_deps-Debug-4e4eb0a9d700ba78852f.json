@@ -1,0 +1,27 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"UE/QtApplicationEnvironment/Transport/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"id" : "QtUeTransport_autogen_timestamp_deps::@d4f48aa2cb2df08c3486",
+	"isGeneratorProvided" : true,
+	"name" : "QtUeTransport_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "UE/QtApplicationEnvironment/Transport",
+		"source" : "UE/QtApplicationEnvironment/Transport"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

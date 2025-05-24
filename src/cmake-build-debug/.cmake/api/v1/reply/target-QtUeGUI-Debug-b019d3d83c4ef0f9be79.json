@@ -1,0 +1,374 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "UE/QtApplicationEnvironment/GUI/libQtUeGUI.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"set_property",
+			"qt5_use_modules",
+			"include_directories",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"UE/QtApplicationEnvironment/GUI/CMakeLists.txt",
+			"C:/Qt/5.15.18/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake",
+			"UE/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 459,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 459,
+				"parent" : 4
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 12,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 13,
+				"parent" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 14,
+				"parent" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 458,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 458,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 457,
+				"parent" : 2
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -Og  -g -std=gnu++20 -fdiagnostics-color=always"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "QT_NETWORK_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_WIDGETS_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/cmake-build-debug/UE/QtApplicationEnvironment/GUI"
+				},
+				{
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/QtApplicationEnvironment/GUI"
+				},
+				{
+					"backtrace" : 0,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/cmake-build-debug/UE/QtApplicationEnvironment/GUI/QtUeGUI_autogen/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/Application"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/ApplicationEnvironment"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "C:/Users/nchol/Nokia-PK-2025/src/UE/../COMMON"
+				},
+				{
+					"backtrace" : 10,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/include"
+				},
+				{
+					"backtrace" : 10,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/include/QtWidgets"
+				},
+				{
+					"backtrace" : 10,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/include/QtGui"
+				},
+				{
+					"backtrace" : 10,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/include/QtCore"
+				},
+				{
+					"backtrace" : 10,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/./mkspecs/win32-g++"
+				},
+				{
+					"backtrace" : 10,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/include/QtANGLE"
+				},
+				{
+					"backtrace" : 11,
+					"isSystem" : true,
+					"path" : "C:/Qt/5.15.18/mingw81_64/include/QtNetwork"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					12
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "QtUeGUI_autogen::@2e2ff36e4f635c1eed24"
+		},
+		{
+			"id" : "QtUeGUI_autogen_timestamp_deps::@2e2ff36e4f635c1eed24"
+		}
+	],
+	"id" : "QtUeGUI::@2e2ff36e4f635c1eed24",
+	"name" : "QtUeGUI",
+	"nameOnDisk" : "libQtUeGUI.a",
+	"paths" : 
+	{
+		"build" : "UE/QtApplicationEnvironment/GUI",
+		"source" : "UE/QtApplicationEnvironment/GUI"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				14
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				15
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/UE/QtApplicationEnvironment/GUI/QtUeGUI_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtAlertMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtApplication.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtCallMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtDialMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtMainWindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtPhoneNumberEdit.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtSelectionListMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtSmsComposeMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtStackedWidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtSubmitTextEdit.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtTextViewMode.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtUeGui.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "UE/QtApplicationEnvironment/GUI/QtUeModeWidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/UE/QtApplicationEnvironment/GUI/QtUeGUI_autogen/timestamp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/UE/QtApplicationEnvironment/GUI/QtUeGUI_autogen/timestamp.rule",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

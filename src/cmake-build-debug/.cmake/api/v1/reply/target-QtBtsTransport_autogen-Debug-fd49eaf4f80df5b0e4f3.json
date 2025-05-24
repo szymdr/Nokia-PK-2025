@@ -1,0 +1,71 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"BTS/QtApplicationEnvironment/Transport/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "QtBtsTransport_autogen_timestamp_deps::@7d26c8b28b076815da90"
+		}
+	],
+	"id" : "QtBtsTransport_autogen::@7d26c8b28b076815da90",
+	"isGeneratorProvided" : true,
+	"name" : "QtBtsTransport_autogen",
+	"paths" : 
+	{
+		"build" : "BTS/QtApplicationEnvironment/Transport",
+		"source" : "BTS/QtApplicationEnvironment/Transport"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/BTS/QtApplicationEnvironment/Transport/CMakeFiles/QtBtsTransport_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/BTS/QtApplicationEnvironment/Transport/CMakeFiles/QtBtsTransport_autogen.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/BTS/QtApplicationEnvironment/Transport/QtBtsTransport_autogen/timestamp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

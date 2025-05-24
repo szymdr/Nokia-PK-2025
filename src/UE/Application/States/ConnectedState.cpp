@@ -1,8 +1,9 @@
 #include "ConnectedState.hpp"
 #include "NotConnectedState.hpp"
-#include "ConstructSmsState.hpp"
 #include "Sms.hpp"
 #include "Context.hpp"
+#include "Ports/IUserPort.hpp"
+#include "Ports/UserPort.hpp"
 
 namespace ue
 {
@@ -18,16 +19,14 @@ namespace ue
         context.setState<NotConnectedState>();
     }
 
-    void ConnectedState::handleConstructSms(common::PhoneNumber to, const std::string& text)
-    {
-        context.setState<ConstructSmsState>(to, text);
-    }
 
     void ConnectedState::handleSms(common::PhoneNumber from, const std::string& text)
     {
         logger.logInfo("Received SMS from: " + common::to_string(from) + ", text: " + text);
-        context.smsDb.addMessage({from, context.user.getOwnPhoneNumber(), text, true});
-        context.user.showNewSms();
+        Sms sms{from, context.user.getOwnPhoneNumber(), text, true};
+        context.smsDb.addMessage(sms);
+        context.user.showNewSms(true);
+        context.user.showSms(&sms);
     }
 
 }

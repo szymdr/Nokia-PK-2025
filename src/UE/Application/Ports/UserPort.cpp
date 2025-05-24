@@ -1,5 +1,7 @@
 #include "UserPort.hpp"
 #include "UeGui/IListViewMode.hpp"
+#include "UeGui/ITextMode.hpp"
+
 
 namespace ue
 {
@@ -39,15 +41,19 @@ namespace ue
         menu.addSelectionListItem("View SMS", "");
     }
 
-    common::PhoneNumber UserPort::getOwnPhoneNumber() const
+
+    void UserPort::showNewSms(bool present)
     {
-        return phoneNumber;
+        gui.showNewSms(present);
     }
 
-    void UserPort::showNewSms()
+    void UserPort::showSms(const Sms* sms)
     {
-        gui.showNewSms(true);
+        IUeGui::ITextMode& mode = gui.setViewTextMode();
+        mode.setText("From: " + common::to_string(sms->sender) + "\nText: " + sms->text);
     }
+
+
 
 
 }

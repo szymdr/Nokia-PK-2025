@@ -46,12 +46,7 @@ namespace ue
         context.state->handleDisconnected();
     }
 
-    void Application::handleConstructSms(common::PhoneNumber to, const std::string& text)
-    {
-        context.state->handleConstructSms(to, text);
-    }
-
-    void Application::handleSms(common::PhoneNumber from, const std::string& text)
+    void Application::handleSms(common::PhoneNumber from, const std::string& text)    // to git
     {
         context.state->handleSms(from, text);
     }

@@ -8,13 +8,13 @@ namespace ue
 {
 
     class IEventsHandler : public IBtsEventsHandler,
-                       public IUserEventsHandler,
-                       public ITimerEventsHandler
+                           public IUserEventsHandler,
+                           public ITimerEventsHandler
     {
     public:
-        virtual void handleConstructSms(common::PhoneNumber to, const std::string& text) = 0;
+        virtual ~IEventsHandler() = default;
+
         virtual void handleSms(common::PhoneNumber from, const std::string& text) = 0;
     };
-
 
 }

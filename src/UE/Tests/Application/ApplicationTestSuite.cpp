@@ -91,5 +91,14 @@ protected:
         EXPECT_CALL(userPortMock, showNotConnected());
         objectUnderTest.handleDisconnected();
     }
+    TEST_F(ApplicationConnectedTestSuite, shallReceiveSms)
+    {
+        const common::PhoneNumber sender{123};
+        const std::string text = "hello";
+
+        EXPECT_CALL(userPortMock, showNewSms(true));
+        objectUnderTest.handleSms(sender, text);
+    }
+
 
 }

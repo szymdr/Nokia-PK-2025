@@ -54,6 +54,8 @@ void BtsPort::handleMessage(BinaryMessage msg)
         case common::MessageId::Sms:
             {
                 std::string text = reader.readRemainingText();
+                logger.logDebug("Sms from: ", from);
+                logger.logDebug("Message: ", text);
                 handler->handleSms(from, text);
                 break;
             }
@@ -89,7 +91,10 @@ void BtsPort::sendSms(common::PhoneNumber to, const std::string& text)
     common::OutgoingMessage msg{common::MessageId::Sms, phoneNumber, to};
     msg.writeText(text);
     transport.sendMessage(msg.getMessage());
+
 }
+
+
 
 
 }

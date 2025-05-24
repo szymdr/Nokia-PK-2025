@@ -1,7 +1,6 @@
 #include "Sms.hpp"
 
-namespace ue
-{
+namespace ue {
 
     void SmsDatabase::addMessage(const Sms& sms)
     {

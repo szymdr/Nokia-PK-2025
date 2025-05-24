@@ -1,18 +1,16 @@
 #pragma once
-
 #include "Messages/PhoneNumber.hpp"
 #include <string>
 #include <vector>
 
-namespace ue
-{
+namespace ue {
 
     struct Sms
     {
         common::PhoneNumber sender;
         common::PhoneNumber receiver;
         std::string text;
-        bool isReceived;
+        bool isIncoming;
     };
 
     class SmsDatabase

@@ -1,3 +1,5 @@
 UE
 images
 *syslog*
+.idea/
+cmake-build-debug/

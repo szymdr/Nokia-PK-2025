@@ -1,0 +1,71 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"UE/QtApplicationEnvironment/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "QtUeApplicationEnvironment_autogen_timestamp_deps::@da690c1b2f54b815ce33"
+		}
+	],
+	"id" : "QtUeApplicationEnvironment_autogen::@da690c1b2f54b815ce33",
+	"isGeneratorProvided" : true,
+	"name" : "QtUeApplicationEnvironment_autogen",
+	"paths" : 
+	{
+		"build" : "UE/QtApplicationEnvironment",
+		"source" : "UE/QtApplicationEnvironment"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/UE/QtApplicationEnvironment/CMakeFiles/QtUeApplicationEnvironment_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/UE/QtApplicationEnvironment/CMakeFiles/QtUeApplicationEnvironment_autogen.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/UE/QtApplicationEnvironment/QtUeApplicationEnvironment_autogen/timestamp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

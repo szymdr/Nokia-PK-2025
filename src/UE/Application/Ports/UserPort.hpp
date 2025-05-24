@@ -4,6 +4,7 @@
 #include "Logger/PrefixedLogger.hpp"
 #include "IUeGui.hpp"
 #include "Messages/PhoneNumber.hpp"
+#include "Sms.hpp"
 
 namespace ue
 {
@@ -19,8 +20,8 @@ namespace ue
         void showConnecting() override;
         void showConnected() override;
 
-        void showNewSms() override;
-
+        void showNewSms(bool present) override;
+        void showSms(const Sms* sms) override;
 
         common::PhoneNumber getOwnPhoneNumber() const override;
 

@@ -26,7 +26,6 @@ namespace ue
         void handleAttachAccept() override;
         void handleAttachReject() override;
         void handleDisconnected() override;
-        void handleConstructSms(common::PhoneNumber to, const std::string& text) override;
         void handleSms(common::PhoneNumber from, const std::string& text) override;
 
     private:

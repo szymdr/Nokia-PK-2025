@@ -16,6 +16,7 @@ namespace ue
         virtual void handleAttachReject() = 0;
         virtual void handleDisconnected() = 0;
         virtual void handleSms(common::PhoneNumber from, const std::string& text) = 0;
+
     };
 
 class IBtsPort
@@ -24,8 +25,9 @@ public:
     virtual ~IBtsPort() = default;
 
     virtual void sendAttachRequest(common::BtsId) = 0;
-    virtual void sendSms(common::PhoneNumber, const std::string&) {}
-    virtual void handleSms(common::PhoneNumber from, const std::string& text) = 0;
+    virtual void sendSms(common::PhoneNumber, const std::string&) = 0;
+    virtual void handleSms(common::PhoneNumber, const std::string&) = 0;
+
 
 
 };
