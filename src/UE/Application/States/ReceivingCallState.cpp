@@ -44,4 +44,8 @@ void ReceivingCallState::handleTimeout()
     context.setState<ConnectedState>();
 }
 
+void ReceivingCallState::handleCallRequest(common::PhoneNumber phoneNumber)
+{
+}
+
 }

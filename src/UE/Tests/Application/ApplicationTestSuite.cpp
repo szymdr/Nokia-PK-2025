@@ -181,7 +181,6 @@ struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
     {
         EXPECT_CALL(userPortMock, getDialedPhoneNumber()).WillRepeatedly(Return(PEER_NUMBER));
         EXPECT_CALL(userPortMock, setDialNumber(PEER_NUMBER));
-        EXPECT_CALL(userPortMock, showDialing());
         objectUnderTest.handleDialAction();
     }
 };

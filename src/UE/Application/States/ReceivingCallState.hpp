@@ -15,6 +15,7 @@ public:
     void handleCallDrop() override;
     void handleRemoteCallDrop() override;
     void handleTimeout() override;
+    void handleCallRequest(common::PhoneNumber) override;
 
 private:
     common::PhoneNumber callerNumber;

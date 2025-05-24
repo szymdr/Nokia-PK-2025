@@ -34,8 +34,11 @@ void ConnectedState::handleDialAction()
     common::PhoneNumber numberToDial = context.user.getDialedPhoneNumber();
     logger.logDebug("ConnectedState: Dialing number: ", numberToDial);
     context.user.setDialNumber(numberToDial);
-    context.user.showDialing();
     context.setState<DialingState>(numberToDial);
+}
+
+void ConnectedState::handleCallDrop()
+{
 }
 
 void ConnectedState::handleUnknownRecipient(common::PhoneNumber)
