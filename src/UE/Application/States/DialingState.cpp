@@ -66,7 +66,6 @@ void DialingState::handleCallDrop()
     context.timer.stopTimer();
     context.bts.sendCallDrop(phoneNumber);
     context.user.showAlert("Call dropped");
-    context.user.showConnected();
     context.setState<ConnectedState>();
 }
 

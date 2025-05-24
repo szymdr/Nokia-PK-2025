@@ -108,7 +108,7 @@ void ApplicationConnectedCallTestSuite::showIncomingCallAndStartTimeoutOnCallReq
 {
     using namespace std::chrono_literals;
     EXPECT_CALL(userPortMock, showIncomingCall(PHONE_NUMBER));
-    EXPECT_CALL(timerPortMock, startTimer(3000ms));
+    EXPECT_CALL(timerPortMock, startTimer(30000ms));
     objectUnderTest.handleCallRequest(PHONE_NUMBER);
 }
 
@@ -219,5 +219,31 @@ TEST_F(ApplicationDialingTestSuite, shallSendCallDropOnUserReject)
     EXPECT_CALL(userPortMock, showConnected());
     objectUnderTest.handleCallDrop();
 }
+
+struct ApplicationTalkingTestSuite : ApplicationReceivingCallTestSuite
+{
+    ApplicationTalkingTestSuite()
+    {
+        EXPECT_CALL(timerPortMock, stopTimer());
+        EXPECT_CALL(btsPortMock, sendCallAccept(PHONE_NUMBER));
+        EXPECT_CALL(userPortMock, showTalking());
+        objectUnderTest.handleUserAcceptCall();
+    }
+};
+
+TEST_F(ApplicationTalkingTestSuite, shallDropCallOnUserAction)
+{
+    EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleCallDrop();
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallEndCallOnRemoteDrop)
+{
+    EXPECT_CALL(userPortMock, showAlert("Call ended"));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleRemoteCallDrop();
+}
+
 
 }

@@ -24,7 +24,7 @@ ConnectedState::~ConnectedState() = default;
 void ConnectedState::handleCallRequest(common::PhoneNumber callerNumber)
 {
     using namespace std::chrono_literals;
-    context.timer.startTimer(3000ms);
+    context.timer.startTimer(30000ms);
     context.setState<ReceivingCallState>(callerNumber);
 }
 
