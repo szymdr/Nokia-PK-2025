@@ -25,9 +25,7 @@ public:
     void showAlert(const std::string& text) override;
 
     common::PhoneNumber getDialedPhoneNumber() const override;
-
     void setDialNumber(const common::PhoneNumber& number);
-
     void handleMenuSelection(unsigned index);
 
 private:

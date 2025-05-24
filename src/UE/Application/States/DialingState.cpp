@@ -16,8 +16,8 @@ DialingState::~DialingState() = default;
 void DialingState::handleUserAcceptCall()
 {
     context.timer.stopTimer();
-    context.bts.sendCallRequest(phoneNumber); // Wyślij żądanie połączenia
-    context.timer.startTimer(std::chrono::seconds(60)); // Uruchom timer
+    context.bts.sendCallRequest(phoneNumber);
+    context.timer.startTimer(std::chrono::seconds(60));
     context.setState<TalkingState>();
 }
 
