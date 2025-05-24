@@ -24,8 +24,13 @@ public:
     virtual void showConnecting() = 0;
     virtual void showConnected() = 0;
     virtual void showIncomingCall(const common::PhoneNumber) = 0;
+    virtual void showDialing() = 0;
     virtual void showTalking() = 0;
     virtual void showAlert(const std::string &text) = 0;
+
+    virtual common::PhoneNumber getDialedPhoneNumber() const = 0;
+
+    virtual void setDialNumber(const common::PhoneNumber& number) = 0;
 };
 
 }

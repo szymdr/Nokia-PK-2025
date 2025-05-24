@@ -42,6 +42,15 @@ void UserPort::showConnected()
     menu.clearSelectionList();
     menu.addSelectionListItem("Compose SMS", "");
     menu.addSelectionListItem("View SMS", "");
+    menu.addSelectionListItem("Dial number", "");
+
+    gui.setAcceptCallback([this]() {
+        auto selection = gui.setListViewMode().getCurrentItemIndex();
+        if (selection.first)
+        {
+            handleMenuSelection(selection.second);
+        }
+    });
 }
 
 void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
@@ -65,6 +74,33 @@ void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
     });
 }
 
+void UserPort::showDialing()
+{
+    auto& dialMode = gui.setDialMode();
+
+    gui.setAcceptCallback([this, &dialMode]() {
+        if (handler)
+        {
+            dialedPhoneNumber = dialMode.getPhoneNumber();
+            logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
+
+            auto& callMode = gui.setCallMode();
+            callMode.clearIncomingText();
+            callMode.appendIncomingText("Dialing to: " + to_string(dialedPhoneNumber));
+
+            handler->handleDialAction();
+        }
+    });
+
+    gui.setRejectCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallDrop();
+        }
+    });
+
+}
+
 void UserPort::showTalking()
 {
     gui.setCallMode().clearIncomingText();
@@ -75,6 +111,39 @@ void UserPort::showAlert(const std::string &text)
 {
     gui.setAlertMode().setText("" + text);
 
+}
+
+common::PhoneNumber UserPort::getDialedPhoneNumber() const
+{
+    return dialedPhoneNumber;
+}
+
+void UserPort::setDialNumber(const common::PhoneNumber& number)
+{
+    //dialedPhoneNumber = number;
+    gui.setDialMode();
+    logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
+
+}
+
+
+void UserPort::handleMenuSelection(unsigned index)
+{
+    switch (index)
+    {
+    case 0:
+        gui.setSmsComposeMode();
+        break;
+    case 1:
+        gui.setListViewMode();
+        break;
+    case 2:
+        showDialing();
+        break;
+    default:
+        gui.setAlertMode().setText("Invalid selection");
+        break;
+    }
 }
 
 }

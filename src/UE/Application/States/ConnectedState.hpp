@@ -12,8 +12,13 @@ public:
     void handleDisconnected() override;
 
     ~ConnectedState() override;
-
     void handleCallRequest(common::PhoneNumber callerNumber) override;
+
+    void handleDialAction() override;
+
+private:
+    bool waitingForCall{false};
+    common::PhoneNumber callerNumber;
 };
 
 }

@@ -19,4 +19,8 @@ void TalkingState::handleUnknownRecipient(common::PhoneNumber /*phoneNumber*/)
     context.setState<ConnectedState>();
 }
 
+void TalkingState::handleCallRequest(common::PhoneNumber)
+{
+}
+
 }

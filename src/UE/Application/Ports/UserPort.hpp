@@ -20,14 +20,20 @@ public:
     void showConnected() override;
 
     void showIncomingCall(const common::PhoneNumber callerNumber) override;
+    void showDialing() override;
     void showTalking() override;
     void showAlert(const std::string& text) override;
+
+    common::PhoneNumber getDialedPhoneNumber() const override;
+    void setDialNumber(const common::PhoneNumber& number);
+    void handleMenuSelection(unsigned index);
 
 private:
     common::PrefixedLogger logger;
     IUeGui& gui;
     common::PhoneNumber callerNumber;
     IUserEventsHandler* handler = nullptr;
+    common::PhoneNumber dialedPhoneNumber;
 };
 
 }
