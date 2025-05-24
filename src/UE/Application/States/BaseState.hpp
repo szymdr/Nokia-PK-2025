@@ -25,12 +25,12 @@ public:
     // IUserEventsHandler interface
     void handleCallRequest(common::PhoneNumber phoneNumber) override;
     void handleUserAcceptCall() override;
-    void handleUserRejectCall() override;
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 
     void handleDialAction() override;
     void handleCallAccept() override;
     void handleCallDrop() override;
+    void handleRemoteCallDrop () override;
 
     virtual void onEnter() {}
 

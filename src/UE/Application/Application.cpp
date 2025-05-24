@@ -57,29 +57,28 @@ void Application::handleUserAcceptCall()
     context.state->handleUserAcceptCall();
 }
 
-void Application::handleUserRejectCall()
-{
-    context.state->handleUserRejectCall();
-}
-
 void Application::handleUnknownRecipient(common::PhoneNumber phoneNumber)
 {
     context.state->handleUnknownRecipient(phoneNumber);
 }
 
-    void Application::handleDialAction()
+void Application::handleDialAction()
 {
     context.state->handleDialAction();
 }
 
-    void Application::handleCallAccept()
+ void Application::handleCallAccept()
 {
     context.state->handleUserAcceptCall();
 }
 
-    void Application::handleCallDrop()
+void Application::handleCallDrop()
 {
-    context.state->handleUserRejectCall();
+    context.state->handleCallDrop();
 }
 
+void Application::handleRemoteCallDrop()
+    {
+    context.state->handleRemoteCallDrop();
+}
 }

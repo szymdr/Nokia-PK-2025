@@ -15,6 +15,7 @@ public:
     void handleCallRequest(common::PhoneNumber callerNumber) override;
 
     void handleDialAction() override;
+    void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 
 private:
     bool waitingForCall{false};

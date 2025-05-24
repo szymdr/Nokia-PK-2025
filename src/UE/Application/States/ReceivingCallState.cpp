@@ -21,13 +21,20 @@ void ReceivingCallState::handleUserAcceptCall()
 {
     context.timer.stopTimer();
     context.bts.sendCallAccept(callerNumber);
-    context.setState<TalkingState>();
+    context.setState<TalkingState>(callerNumber);
 }
 
-void ReceivingCallState::handleUserRejectCall()
+void ReceivingCallState::handleCallDrop()
 {
     context.timer.stopTimer();
     context.bts.sendCallDrop(callerNumber);
+    context.setState<ConnectedState>();
+}
+
+void ReceivingCallState::handleRemoteCallDrop()
+{
+    context.timer.stopTimer();
+    context.user.showAlert("Call canceled");
     context.setState<ConnectedState>();
 }
 

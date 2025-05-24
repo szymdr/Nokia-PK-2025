@@ -138,7 +138,7 @@ TEST_F(ApplicationReceivingCallTestSuite, shallRejectCallOnUserAction)
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleUserRejectCall();
+    objectUnderTest.handleCallDrop();
 }
 
 TEST_F(ApplicationReceivingCallTestSuite, shallRejectCallOnTimeout)
@@ -167,7 +167,7 @@ TEST_F(ApplicationReceivingCallTestSuite, ignoreUnknownPeerAfterReject)
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleUserRejectCall();
+    objectUnderTest.handleCallDrop();
 
     // BTS → UnknownRecipient
     EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PHONE_NUMBER));
@@ -217,7 +217,7 @@ TEST_F(ApplicationDialingTestSuite, shallSendCallDropOnUserReject)
     EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
     EXPECT_CALL(userPortMock, showAlert("Call dropped"));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleUserRejectCall();
+    objectUnderTest.handleCallDrop();
 }
 
 }

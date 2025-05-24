@@ -18,15 +18,7 @@ void DialingState::handleUserAcceptCall()
     context.timer.stopTimer();
     context.bts.sendCallRequest(phoneNumber);
     context.timer.startTimer(std::chrono::seconds(60));
-    context.setState<TalkingState>();
-}
-
-void DialingState::handleUserRejectCall()
-{
-    context.timer.stopTimer();
-    context.bts.sendCallDrop(phoneNumber);
-    context.user.showAlert("Call dropped");
-    context.setState<ConnectedState>();
+    context.setState<TalkingState>(phoneNumber);
 }
 
 void DialingState::onEnter()
@@ -52,13 +44,13 @@ void DialingState::handleDialAction()
 void DialingState::handleCallAccept()
 {
      context.timer.stopTimer();
-     context.setState<TalkingState>();
+     context.setState<TalkingState>(phoneNumber);
 }
 
-void DialingState::handleCallDrop()
+void DialingState::handleRemoteCallDrop()
 {
     context.timer.stopTimer();
-    context.user.showAlert("Call dropped");
+    context.user.showAlert("Call not accepted");
     context.setState<ConnectedState>();
 }
 
@@ -66,6 +58,15 @@ void DialingState::handleUnknownRecipient(common::PhoneNumber phoneNumber)
 {
     context.timer.stopTimer();
     context.user.showAlert("Peer UE not connected");
+    context.setState<ConnectedState>();
+}
+
+void DialingState::handleCallDrop()
+{
+    context.timer.stopTimer();
+    context.bts.sendCallDrop(phoneNumber);
+    context.user.showAlert("Call dropped");
+    context.user.showConnected();
     context.setState<ConnectedState>();
 }
 

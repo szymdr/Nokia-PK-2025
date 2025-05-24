@@ -12,7 +12,6 @@ public:
     ~DialingState() override;
 
     void handleUserAcceptCall() override;
-    void handleUserRejectCall() override;
 
     void handleTimeout() override;
     void onEnter() override;
@@ -20,6 +19,7 @@ public:
 
     void handleCallAccept() override;
     void handleCallDrop() override;
+    void handleRemoteCallDrop() override;
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 
 private:

@@ -12,7 +12,8 @@ public:
     ~ReceivingCallState() override;
 
     void handleUserAcceptCall() override;
-    void handleUserRejectCall() override;
+    void handleCallDrop() override;
+    void handleRemoteCallDrop() override;
     void handleTimeout() override;
 
 private:

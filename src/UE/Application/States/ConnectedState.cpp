@@ -38,4 +38,8 @@ void ConnectedState::handleDialAction()
     context.setState<DialingState>(numberToDial);
 }
 
+void ConnectedState::handleUnknownRecipient(common::PhoneNumber)
+{
+}
+
 }

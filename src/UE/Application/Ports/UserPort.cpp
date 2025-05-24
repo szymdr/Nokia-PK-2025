@@ -103,8 +103,16 @@ void UserPort::showDialing()
 
 void UserPort::showTalking()
 {
-    gui.setCallMode().clearIncomingText();
-    gui.setCallMode().appendIncomingText("Talking...");
+    auto& callMode = gui.setCallMode();
+    callMode.clearIncomingText();
+    callMode.appendIncomingText("Talking...");
+
+    gui.setRejectCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallDrop();
+        }
+    });
 }
 
 void UserPort::showAlert(const std::string &text)
