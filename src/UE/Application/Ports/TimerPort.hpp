@@ -2,7 +2,6 @@
 
 #include "ITimerPort.hpp"
 #include "Logger/PrefixedLogger.hpp"
-#include <thread>
 #include <atomic>
 
 namespace ue
@@ -19,14 +18,14 @@ public:
 
     // ITimerPort interface
     void startTimer(Duration duration) override;
-    void startCountdown(Duration duration) override;
     void stopTimer() override;
 
 private:
     common::PrefixedLogger logger;
     ITimerEventsHandler* handler = nullptr;
-    std::thread timerThread;
-    std::atomic<bool> timerRunning{false};
+    std::atomic<bool> isTimerRunning{false};
+
+    void runTimer(Duration duration) override;
 };
 
 }

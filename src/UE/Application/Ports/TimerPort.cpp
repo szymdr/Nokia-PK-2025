@@ -12,11 +12,7 @@ TimerPort::TimerPort(common::ILogger &logger)
 
 TimerPort::~TimerPort()
 {
-    stopTimer();
-    if (timerThread.joinable())
-    {
-        timerThread.join();
-    }
+    TimerPort::stopTimer();
 }
 
 void TimerPort::start(ITimerEventsHandler &handler)
@@ -37,35 +33,28 @@ void TimerPort::startTimer(Duration duration)
     logger.logDebug("Start timer: ", duration.count(), "ms");
     stopTimer();
 
-    std::thread(&TimerPort::startCountdown, this, duration).detach();
-}
-
-void TimerPort::startCountdown(Duration duration)
-{
-    logger.logDebug("Start countdown timer: ", duration.count(), "ms");
-    stopTimer();
-    timerRunning.store(true);
-    timerThread = std::thread([this, duration]() {
-        auto startTime = std::chrono::steady_clock::now();
-        while (timerRunning.load() && std::chrono::steady_clock::now() - startTime < duration)
-        {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-        if (timerRunning.load() && handler)
-        {
-            handler->handleTimeout();
-        }
-        timerRunning.store(false);
-    });
+    isTimerRunning = true;
+    std::thread(&TimerPort::runTimer, this, duration).detach();
 }
 
 void TimerPort::stopTimer()
 {
     logger.logDebug("Stop timer");
-    timerRunning.store(false);
-    if (timerThread.joinable())
+    isTimerRunning = false;
+}
+
+void TimerPort::runTimer(Duration duration)
+{
+    std::this_thread::sleep_for(duration);
+    if (isTimerRunning)
     {
-        timerThread.join();
+        logger.logDebug("Timer expired");
+        handler->handleTimeout();
+    }
+    else
+    {
+        logger.logDebug("Timer stopped before expiration");
     }
 }
+
 }
