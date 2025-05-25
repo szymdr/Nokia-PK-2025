@@ -1,7 +1,6 @@
 // c++
 #include "TimerPort.hpp"
 #include <chrono>
-#include <thread>
 
 namespace ue
 {
@@ -12,7 +11,7 @@ TimerPort::TimerPort(common::ILogger &logger)
 
 TimerPort::~TimerPort()
 {
-    TimerPort::stopTimer();
+    stopTimer();
 }
 
 void TimerPort::start(ITimerEventsHandler &handler)
@@ -34,26 +33,41 @@ void TimerPort::startTimer(Duration duration)
     stopTimer();
 
     isTimerRunning = true;
-    std::thread(&TimerPort::runTimer, this, duration).detach();
+    stopRequested = false;
+
+    timerThread = std::thread(&TimerPort::runTimer, this, duration);
 }
 
 void TimerPort::stopTimer()
 {
-    logger.logDebug("Stop timer");
+    {
+        std::lock_guard<std::mutex> lock(timerMutex);
+        stopRequested = true;
+    }
+    timerCv.notify_all();
+
+    if (timerThread.joinable())
+    {
+        timerThread.join();
+    }
+
     isTimerRunning = false;
+    logger.logDebug("Timer stopped");
 }
 
 void TimerPort::runTimer(Duration duration)
 {
-    std::this_thread::sleep_for(duration);
-    if (isTimerRunning)
+    std::unique_lock<std::mutex> lock(timerMutex);
+    if (timerCv.wait_for(lock, duration, [this] { return stopRequested; }))
+    {
+        logger.logDebug("Timer stopped before expiration");
+        return;
+    }
+
+    if (isTimerRunning && handler)
     {
         logger.logDebug("Timer expired");
         handler->handleTimeout();
-    }
-    else
-    {
-        logger.logDebug("Timer stopped before expiration");
     }
 }
 
