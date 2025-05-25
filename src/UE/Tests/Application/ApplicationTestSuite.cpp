@@ -127,9 +127,11 @@ struct ApplicationReceivingCallTestSuite : ApplicationConnectedCallTestSuite
 
 TEST_F(ApplicationReceivingCallTestSuite, shallAcceptCallOnUserAction)
 {
+    using namespace std::chrono_literals;
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallAccept(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showTalking());
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
     objectUnderTest.handleUserAcceptCall();
 }
 
@@ -150,9 +152,11 @@ TEST_F(ApplicationReceivingCallTestSuite, shallRejectCallOnTimeout)
 
 TEST_F(ApplicationReceivingCallTestSuite, shallAlertUserOnUnknownPeerAfterAccept)
 {
+    using namespace std::chrono_literals;
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallAccept(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showTalking());
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
     objectUnderTest.handleUserAcceptCall();
 
     // BTS → UnknownRecipient
@@ -191,8 +195,10 @@ struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
 
 TEST_F(ApplicationDialingTestSuite, shallShowTalkingOnAccept)
 {
+    using namespace std::chrono_literals;
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(userPortMock, showTalking());
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
     objectUnderTest.handleUserAcceptCall();
 }
 
@@ -242,9 +248,11 @@ struct ApplicationTalkingTestSuite : ApplicationReceivingCallTestSuite
 {
     ApplicationTalkingTestSuite()
     {
+        using namespace std::chrono_literals;
         EXPECT_CALL(timerPortMock, stopTimer());
         EXPECT_CALL(btsPortMock, sendCallAccept(PHONE_NUMBER));
         EXPECT_CALL(userPortMock, showTalking());
+        EXPECT_CALL(timerPortMock, startTimer(120000ms));
         objectUnderTest.handleUserAcceptCall();
     }
 };
@@ -261,6 +269,66 @@ TEST_F(ApplicationTalkingTestSuite, shallEndCallOnRemoteDrop)
     EXPECT_CALL(userPortMock, showAlert("Call ended"));
     EXPECT_CALL(userPortMock, showConnected());
     objectUnderTest.handleRemoteCallDrop();
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallSendMessageOnUserInput)
+{
+    const std::string TEXT = "Hello";
+    EXPECT_CALL(btsPortMock, sendCallTalk(PHONE_NUMBER, TEXT));
+    EXPECT_CALL(userPortMock, appendIncomingText("You: " + TEXT));
+    using namespace std::chrono_literals;
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
+
+    objectUnderTest.handleUserCallTalk(TEXT);
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallReceiveMessageFromPeer)
+{
+    const std::string TEXT = "PeerMsg";
+    EXPECT_CALL(userPortMock, appendIncomingText("Peer: " + TEXT));
+    using namespace std::chrono_literals;
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
+
+    objectUnderTest.handleBtsCallTalk(TEXT);
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallDropCallAfterInactivityFollowingSend)
+{
+    const std::string TEXT = "Hi";
+    EXPECT_CALL(btsPortMock, sendCallTalk(PHONE_NUMBER, TEXT));
+    EXPECT_CALL(userPortMock, appendIncomingText("You: " + TEXT));
+    using namespace std::chrono_literals;
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
+    objectUnderTest.handleUserCallTalk(TEXT);
+
+    EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
+    EXPECT_CALL(userPortMock, showAlert("Call ended due to inactivity"));
+    EXPECT_CALL(userPortMock, showConnected());
+
+    objectUnderTest.handleTimeout();
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallDropCallAfterInactivityFollowingReceive)
+{
+    const std::string TEXT = "HiBack";
+    EXPECT_CALL(userPortMock, appendIncomingText("Peer: " + TEXT));
+    using namespace std::chrono_literals;
+    EXPECT_CALL(timerPortMock, startTimer(120000ms));
+    objectUnderTest.handleBtsCallTalk(TEXT);
+
+    EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
+    EXPECT_CALL(userPortMock, showAlert("Call ended due to inactivity"));
+    EXPECT_CALL(userPortMock, showConnected());
+
+    objectUnderTest.handleTimeout();
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallHandleUnknownRecipientDuringTalking)
+{
+    EXPECT_CALL(userPortMock, showAlert("Peer unavailable"));
+    EXPECT_CALL(userPortMock, showConnected());
+
+    objectUnderTest.handleUnknownRecipient(PHONE_NUMBER);
 }
 
 }
