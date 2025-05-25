@@ -14,10 +14,8 @@ public:
     void handleUserAcceptCall() override;
 
     void handleTimeout() override;
-    void onEnter() override;
     void handleDialAction() override;
 
-    void handleCallAccept() override;
     void handleCallDrop() override;
     void handleRemoteCallDrop() override;
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;

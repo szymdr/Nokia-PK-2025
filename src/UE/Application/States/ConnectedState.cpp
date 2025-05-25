@@ -32,8 +32,12 @@ void ConnectedState::handleDialAction()
 {
     logger.logDebug("ConnectedState: handleDialAction called");
     common::PhoneNumber numberToDial = context.user.getDialedPhoneNumber();
+
     logger.logDebug("ConnectedState: Dialing number: ", numberToDial);
     context.user.setDialNumber(numberToDial);
+
+    context.bts.sendCallRequest(numberToDial);
+    context.timer.startTimer(std::chrono::seconds(60));
     context.setState<DialingState>(numberToDial);
 }
 

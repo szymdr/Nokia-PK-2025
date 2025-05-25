@@ -8,6 +8,7 @@ DialingState::DialingState(Context& context, const common::PhoneNumber& phoneNum
     : BaseState(context, "DialingState"), phoneNumber(phoneNumber)
 {
     logger.logDebug("DialingState: Created with phone number: ", phoneNumber);
+    context.user.showCalling(phoneNumber);
 
 }
 
@@ -16,14 +17,7 @@ DialingState::~DialingState() = default;
 void DialingState::handleUserAcceptCall()
 {
     context.timer.stopTimer();
-    context.bts.sendCallRequest(phoneNumber);
-    context.timer.startTimer(std::chrono::seconds(60));
     context.setState<TalkingState>(phoneNumber);
-}
-
-void DialingState::onEnter()
-{
-    this->handleDialAction();
 }
 
 void DialingState::handleTimeout()
@@ -34,17 +28,7 @@ void DialingState::handleTimeout()
 
 void DialingState::handleDialAction()
 {
-    auto toNumber = context.user.getDialedPhoneNumber();
-    logger.logDebug("DialingState: handleDialAction, dialing: ", toNumber);
 
-    context.bts.sendCallRequest(toNumber);
-    context.timer.startTimer(std::chrono::seconds(60));
-}
-
-void DialingState::handleCallAccept()
-{
-     context.timer.stopTimer();
-     context.setState<TalkingState>(phoneNumber);
 }
 
 void DialingState::handleRemoteCallDrop()

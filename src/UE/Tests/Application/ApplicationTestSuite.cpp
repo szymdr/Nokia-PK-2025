@@ -179,21 +179,22 @@ struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
 
     ApplicationDialingTestSuite()
     {
+        using namespace std::chrono_literals;
         EXPECT_CALL(userPortMock, getDialedPhoneNumber()).WillRepeatedly(Return(PEER_NUMBER));
         EXPECT_CALL(userPortMock, setDialNumber(PEER_NUMBER));
+        EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
+        EXPECT_CALL(timerPortMock, startTimer(60000ms));
+        EXPECT_CALL(userPortMock, showCalling(PEER_NUMBER));
         objectUnderTest.handleDialAction();
     }
 };
 
-TEST_F(ApplicationDialingTestSuite, shallSendCallRequestOnAccept)
+TEST_F(ApplicationDialingTestSuite, shallShowTalkingOnAccept)
 {
     EXPECT_CALL(timerPortMock, stopTimer());
-    EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
-    EXPECT_CALL(timerPortMock, startTimer(_));
     EXPECT_CALL(userPortMock, showTalking());
     objectUnderTest.handleUserAcceptCall();
 }
-
 
 TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnUnknownRecipient)
 {

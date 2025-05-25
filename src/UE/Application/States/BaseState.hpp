@@ -32,8 +32,6 @@ public:
     void handleCallDrop() override;
     void handleRemoteCallDrop () override;
 
-    virtual void onEnter() {}
-
 protected:
     Context& context;
     common::PrefixedLogger logger;

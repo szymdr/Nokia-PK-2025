@@ -82,7 +82,7 @@ void UserPort::showDialing()
         {
             dialedPhoneNumber = dialMode.getPhoneNumber();
             logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
-            showCalling(dialedPhoneNumber);
+            handler->handleDialAction();
         }
     });
 
@@ -96,7 +96,7 @@ void UserPort::showCalling(const common::PhoneNumber& number)
     auto& alertMode = gui.setAlertMode();
     alertMode.setText("Dialing to: \n" + to_string(dialedPhoneNumber));
 
-    handler->handleDialAction();
+    gui.setAcceptCallback([this]() {});
 
     gui.setRejectCallback([this]() {
         if (handler)
@@ -112,6 +112,8 @@ void UserPort::showTalking()
     auto& callMode = gui.setCallMode();
     callMode.clearIncomingText();
     callMode.appendIncomingText("Talking...");
+
+    gui.setAcceptCallback([this]() {});
 
     gui.setRejectCallback([this]() {
         if (handler)
