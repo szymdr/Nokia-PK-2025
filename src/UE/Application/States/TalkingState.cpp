@@ -40,8 +40,9 @@ void TalkingState::handleCallRequest(common::PhoneNumber)
 void TalkingState::handleTimeout()
 {
     context.bts.sendCallDrop(talkingToPhoneNumber);
-    context.user.showAlert("Call ended due to inactivity");
     context.setState<ConnectedState>();
+    context.user.showAlert("Call ended due to inactivity");
+
 }
 
 void TalkingState::handleBtsCallTalk(const std::string& text)
@@ -67,7 +68,7 @@ void TalkingState::sendMessage(const std::string& text)
     resetInactivityTimer();
 }
 
-void TalkingState::resetInactivityTimer()
+void TalkingState::resetInactivityTimer() const
 {
     context.timer.startTimer(std::chrono::minutes(2));
 }

@@ -21,7 +21,7 @@ public:
 
 private:
     void sendMessage(const std::string& text);
-    void resetInactivityTimer();
+    void resetInactivityTimer() const;
 
     common::PhoneNumber talkingToPhoneNumber;
     bool lastActionWasSending{false};
