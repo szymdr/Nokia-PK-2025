@@ -23,14 +23,14 @@ void TalkingState::handleCallDrop()
 
 void TalkingState::handleRemoteCallDrop()
 {
-    context.user.showAlert("Call ended");
     context.setState<ConnectedState>();
+    context.user.showAlert("Call ended");
 }
 
 void TalkingState::handleUnknownRecipient(common::PhoneNumber /*phoneNumber*/)
 {
-    context.user.showAlert("Peer unavailable");
     context.setState<ConnectedState>();
+    context.user.showAlert("Peer unavailable");
 }
 
 void TalkingState::handleCallRequest(common::PhoneNumber)

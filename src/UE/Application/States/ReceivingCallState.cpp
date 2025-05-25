@@ -34,7 +34,6 @@ void ReceivingCallState::handleCallDrop()
 void ReceivingCallState::handleRemoteCallDrop()
 {
     context.timer.stopTimer();
-    context.user.showAlert("Call canceled");
     context.setState<ConnectedState>();
 }
 

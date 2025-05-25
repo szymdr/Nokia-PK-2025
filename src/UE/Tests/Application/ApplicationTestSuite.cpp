@@ -215,9 +215,27 @@ TEST_F(ApplicationDialingTestSuite, shallSendCallDropOnUserReject)
 {
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
-    EXPECT_CALL(userPortMock, showAlert("Call dropped"));
     EXPECT_CALL(userPortMock, showConnected());
     objectUnderTest.handleCallDrop();
+}
+
+TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnRemoteCallDropped)
+{
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(userPortMock, showAlert("Call not accepted"));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleRemoteCallDrop();
+}
+
+TEST_F(ApplicationDialingTestSuite, ignoreUnknownRecipientAfterUserReject)
+{
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleCallDrop();
+
+    // BTS → UnknownRecipient
+    EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PEER_NUMBER));
 }
 
 struct ApplicationTalkingTestSuite : ApplicationReceivingCallTestSuite
