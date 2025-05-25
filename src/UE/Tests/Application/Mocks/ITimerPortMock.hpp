@@ -23,6 +23,7 @@ public:
     ~ITimerPortMock() override;
 
     MOCK_METHOD(void, startTimer, (ITimerPort::Duration), (final));
+    MOCK_METHOD(void, startCountdown, (ITimerPort::Duration), (final));
     MOCK_METHOD(void, stopTimer, (), (final));
 };
 

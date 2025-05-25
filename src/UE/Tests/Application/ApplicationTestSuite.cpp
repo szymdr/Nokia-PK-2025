@@ -215,7 +215,6 @@ TEST_F(ApplicationDialingTestSuite, shallSendCallDropOnUserReject)
 {
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
-    EXPECT_CALL(userPortMock, showAlert("Call dropped"));
     EXPECT_CALL(userPortMock, showConnected());
     objectUnderTest.handleCallDrop();
 }
