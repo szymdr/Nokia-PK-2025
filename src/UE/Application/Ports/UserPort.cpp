@@ -113,7 +113,17 @@ void UserPort::showTalking()
     callMode.clearIncomingText();
     callMode.appendIncomingText("Talking...");
 
-    gui.setAcceptCallback([this]() {});
+    gui.setAcceptCallback([this, &callMode]() {
+        if (handler)
+        {
+            std::string text = callMode.getOutgoingText();
+            if (!text.empty())
+            {
+                callMode.clearOutgoingText();
+                handler->handleUserCallTalk(text);
+            }
+        }
+    });
 
     gui.setRejectCallback([this]() {
         if (handler)
@@ -161,5 +171,13 @@ void UserPort::handleMenuSelection(unsigned index)
         break;
     }
 }
+
+void UserPort::appendIncomingText(const std::string& text)
+{
+    auto& callMode = gui.setCallMode();
+    callMode.appendIncomingText(text);
+    logger.logDebug("Appending incoming text: ", text);
+}
+
 
 }

@@ -17,6 +17,8 @@ public:
     MOCK_METHOD(void, handleDialAction, (), (override));
     MOCK_METHOD(void, handleCallAccept, (), (override));
     MOCK_METHOD(void, handleCallDrop, (), (override));
+    MOCK_METHOD(void, handleUserCallTalk, (const std::string &text), (override));
+
 
 };
 
@@ -34,6 +36,8 @@ public:
     MOCK_METHOD(void, showCalling, (const common::PhoneNumber& number), (final));
     MOCK_METHOD(void, showTalking, (), (final));
     MOCK_METHOD(void, showAlert, (const std::string&), (final));
+    MOCK_METHOD(void, appendIncomingText, (const std::string &text), (override));
+
 
     MOCK_METHOD(common::PhoneNumber, getDialedPhoneNumber, (), (const, final));
     MOCK_METHOD(void, setDialNumber, (const common::PhoneNumber& number), (final));

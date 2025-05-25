@@ -245,5 +245,4 @@ TEST_F(ApplicationTalkingTestSuite, shallEndCallOnRemoteDrop)
     objectUnderTest.handleRemoteCallDrop();
 }
 
-
 }

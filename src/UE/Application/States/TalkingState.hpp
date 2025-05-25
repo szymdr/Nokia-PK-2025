@@ -15,9 +15,16 @@ public:
     void handleRemoteCallDrop() override;
     void handleUnknownRecipient(common::PhoneNumber) override;
     void handleCallRequest(common::PhoneNumber) override;
+    void handleTimeout() override;
+    void handleUserCallTalk(const std::string& text) override;
+    void handleBtsCallTalk(const std::string& text) override;
 
 private:
+    void sendMessage(const std::string& text);
+    void resetInactivityTimer();
+
     common::PhoneNumber talkingToPhoneNumber;
+    bool lastActionWasSending{false};
 };
 
 }
