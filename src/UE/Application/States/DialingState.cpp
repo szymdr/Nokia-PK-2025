@@ -22,8 +22,8 @@ void DialingState::handleUserAcceptCall()
 
 void DialingState::handleTimeout()
 {
-    context.user.showAlert("Call timeout");
     context.setState<ConnectedState>();
+    context.user.showAlert("Call timeout");
 }
 
 void DialingState::handleDialAction()
@@ -34,22 +34,21 @@ void DialingState::handleDialAction()
 void DialingState::handleRemoteCallDrop()
 {
     context.timer.stopTimer();
-    context.user.showAlert("Call not accepted");
     context.setState<ConnectedState>();
+    context.user.showAlert("Call not accepted");
 }
 
 void DialingState::handleUnknownRecipient(common::PhoneNumber phoneNumber)
 {
     context.timer.stopTimer();
-    context.user.showAlert("Peer UE not connected");
     context.setState<ConnectedState>();
+    context.user.showAlert("Peer UE not connected");
 }
 
 void DialingState::handleCallDrop()
 {
     context.timer.stopTimer();
     context.bts.sendCallDrop(phoneNumber);
-    context.user.showAlert("Call dropped");
     context.setState<ConnectedState>();
 }
 

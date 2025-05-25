@@ -75,7 +75,10 @@ void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
 
 void UserPort::showDialing()
 {
-    auto& dialMode = gui.setDialMode();
+    auto &callMode = gui.setCallMode();
+    callMode.clearIncomingText();
+    callMode.appendIncomingText("Type phone number:");
+    auto &dialMode = gui.setDialMode();
 
     gui.setAcceptCallback([this, &dialMode]() {
         if (handler)
@@ -128,6 +131,13 @@ void UserPort::showAlert(const std::string &text)
     auto &alertMode =  gui.setAlertMode();
     alertMode.setText(text);
 
+    gui.setAcceptCallback([this]() {
+        showConnected();
+    });
+
+    gui.setRejectCallback([this]() {
+        showConnected();
+    });
 }
 
 common::PhoneNumber UserPort::getDialedPhoneNumber() const

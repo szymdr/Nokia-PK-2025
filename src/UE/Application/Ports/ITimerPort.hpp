@@ -21,6 +21,7 @@ public:
     virtual ~ITimerPort() = default;
 
     virtual void startTimer(Duration) = 0;
+    virtual void startCountdown(Duration) = 0;
     virtual void stopTimer() = 0;
 };
 
