@@ -25,6 +25,7 @@ public:
     virtual void showConnected() = 0;
     virtual void showIncomingCall(const common::PhoneNumber) = 0;
     virtual void showDialing() = 0;
+    virtual void showCalling(const common::PhoneNumber& number) = 0;
     virtual void showTalking() = 0;
     virtual void showAlert(const std::string &text) = 0;
 

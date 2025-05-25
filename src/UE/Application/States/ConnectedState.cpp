@@ -24,7 +24,7 @@ ConnectedState::~ConnectedState() = default;
 void ConnectedState::handleCallRequest(common::PhoneNumber callerNumber)
 {
     using namespace std::chrono_literals;
-    context.timer.startTimer(3000ms);
+    context.timer.startTimer(30000ms);
     context.setState<ReceivingCallState>(callerNumber);
 }
 
@@ -32,10 +32,21 @@ void ConnectedState::handleDialAction()
 {
     logger.logDebug("ConnectedState: handleDialAction called");
     common::PhoneNumber numberToDial = context.user.getDialedPhoneNumber();
+
     logger.logDebug("ConnectedState: Dialing number: ", numberToDial);
     context.user.setDialNumber(numberToDial);
-    context.user.showDialing();
+
+    context.bts.sendCallRequest(numberToDial);
+    context.timer.startTimer(std::chrono::seconds(60));
     context.setState<DialingState>(numberToDial);
+}
+
+void ConnectedState::handleCallDrop()
+{
+}
+
+void ConnectedState::handleUnknownRecipient(common::PhoneNumber)
+{
 }
 
 }

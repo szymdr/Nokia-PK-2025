@@ -21,6 +21,7 @@ public:
 
     void showIncomingCall(const common::PhoneNumber callerNumber) override;
     void showDialing() override;
+    void showCalling(const common::PhoneNumber& number) override;
     void showTalking() override;
     void showAlert(const std::string& text) override;
 

@@ -32,12 +32,12 @@ public:
 
     void handleCallRequest(PhoneNumber phoneNumber) override;
     void handleUserAcceptCall() override;
-    void handleUserRejectCall() override;
     void handleUnknownRecipient(PhoneNumber phoneNumber) override;
 
     void handleDialAction() override;
     void handleCallAccept() override;
     void handleCallDrop() override;
+    void handleRemoteCallDrop() override;
 private:
     Context context;
     common::PrefixedLogger logger;

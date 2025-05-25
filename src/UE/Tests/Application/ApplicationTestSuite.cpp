@@ -108,7 +108,7 @@ void ApplicationConnectedCallTestSuite::showIncomingCallAndStartTimeoutOnCallReq
 {
     using namespace std::chrono_literals;
     EXPECT_CALL(userPortMock, showIncomingCall(PHONE_NUMBER));
-    EXPECT_CALL(timerPortMock, startTimer(3000ms));
+    EXPECT_CALL(timerPortMock, startTimer(30000ms));
     objectUnderTest.handleCallRequest(PHONE_NUMBER);
 }
 
@@ -138,7 +138,7 @@ TEST_F(ApplicationReceivingCallTestSuite, shallRejectCallOnUserAction)
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleUserRejectCall();
+    objectUnderTest.handleCallDrop();
 }
 
 TEST_F(ApplicationReceivingCallTestSuite, shallRejectCallOnTimeout)
@@ -167,7 +167,7 @@ TEST_F(ApplicationReceivingCallTestSuite, ignoreUnknownPeerAfterReject)
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleUserRejectCall();
+    objectUnderTest.handleCallDrop();
 
     // BTS → UnknownRecipient
     EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PHONE_NUMBER));
@@ -179,22 +179,22 @@ struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
 
     ApplicationDialingTestSuite()
     {
+        using namespace std::chrono_literals;
         EXPECT_CALL(userPortMock, getDialedPhoneNumber()).WillRepeatedly(Return(PEER_NUMBER));
         EXPECT_CALL(userPortMock, setDialNumber(PEER_NUMBER));
-        EXPECT_CALL(userPortMock, showDialing());
+        EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
+        EXPECT_CALL(timerPortMock, startTimer(60000ms));
+        EXPECT_CALL(userPortMock, showCalling(PEER_NUMBER));
         objectUnderTest.handleDialAction();
     }
 };
 
-TEST_F(ApplicationDialingTestSuite, shallSendCallRequestOnAccept)
+TEST_F(ApplicationDialingTestSuite, shallShowTalkingOnAccept)
 {
     EXPECT_CALL(timerPortMock, stopTimer());
-    EXPECT_CALL(btsPortMock, sendCallRequest(PEER_NUMBER));
-    EXPECT_CALL(timerPortMock, startTimer(_));
     EXPECT_CALL(userPortMock, showTalking());
     objectUnderTest.handleUserAcceptCall();
 }
-
 
 TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnUnknownRecipient)
 {
@@ -215,9 +215,53 @@ TEST_F(ApplicationDialingTestSuite, shallSendCallDropOnUserReject)
 {
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
-    EXPECT_CALL(userPortMock, showAlert("Call dropped"));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleUserRejectCall();
+    objectUnderTest.handleCallDrop();
 }
+
+TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnRemoteCallDropped)
+{
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(userPortMock, showAlert("Call not accepted"));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleRemoteCallDrop();
+}
+
+TEST_F(ApplicationDialingTestSuite, ignoreUnknownRecipientAfterUserReject)
+{
+    EXPECT_CALL(timerPortMock, stopTimer());
+    EXPECT_CALL(btsPortMock, sendCallDrop(PEER_NUMBER));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleCallDrop();
+
+    // BTS → UnknownRecipient
+    EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PEER_NUMBER));
+}
+
+struct ApplicationTalkingTestSuite : ApplicationReceivingCallTestSuite
+{
+    ApplicationTalkingTestSuite()
+    {
+        EXPECT_CALL(timerPortMock, stopTimer());
+        EXPECT_CALL(btsPortMock, sendCallAccept(PHONE_NUMBER));
+        EXPECT_CALL(userPortMock, showTalking());
+        objectUnderTest.handleUserAcceptCall();
+    }
+};
+
+TEST_F(ApplicationTalkingTestSuite, shallDropCallOnUserAction)
+{
+    EXPECT_CALL(btsPortMock, sendCallDrop(PHONE_NUMBER));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleCallDrop();
+}
+
+TEST_F(ApplicationTalkingTestSuite, shallEndCallOnRemoteDrop)
+{
+    EXPECT_CALL(userPortMock, showAlert("Call ended"));
+    EXPECT_CALL(userPortMock, showConnected());
+    objectUnderTest.handleRemoteCallDrop();
+}
+
 
 }

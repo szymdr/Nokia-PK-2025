@@ -43,10 +43,6 @@ void BaseState::handleUserAcceptCall()
 {
     logger.logError("Unexpected: handleUserAcceptCall");
 }
-void BaseState::handleUserRejectCall()
-{
-    logger.logError("Unexpected: handleUserRejectCall");
-}
 void BaseState::handleUnknownRecipient(common::PhoneNumber phoneNumber)
 {
     logger.logError("Unexpected: handleUnknownRecipient: ", phoneNumber);
@@ -64,6 +60,10 @@ void BaseState::handleCallDrop()
     logger.logError("Unexpected: handleCallDrop");
 }
 void BaseState::handleDisconnected(){
-    logger.logError("Uexpected: handleDisconnected");
+    logger.logError("Unexpected: handleDisconnected");
 }
+void BaseState::handleRemoteCallDrop() {
+    logger.logError("Unexpected: handleRemoteCallDrop");
+}
+
 }
