@@ -64,6 +64,26 @@ void BaseState::handleCallDrop()
     logger.logError("Unexpected: handleCallDrop");
 }
 void BaseState::handleDisconnected(){
-    logger.logError("Uexpected: handleDisconnected");
+    logger.logError("Unexpected: handleDisconnected");
 }
+void BaseState::handleSmsReceived(const std::string& text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) {
+    logger.logError("Unexpected: handleSmsReceived");
+}
+void BaseState::handleSmsCompose()
+{
+    logger.logError("Unexpected: handleSmsCompose");
+}
+void BaseState::handleViewSmsList() {
+    logger.logError("Unexpected: handleViewSmsList");
+}
+void BaseState::handleViewSmsAccept() {
+    logger.logError("Unexpected: handleViewSmsAccept");
+}
+void BaseState::handleViewSmsClose() {
+    logger.logError("Unexpected: handleViewSmsClose");
+}
+void BaseState::handleSmsSend() {
+    logger.logError("Unexpected: showSmsButton");
+}
+
 }
