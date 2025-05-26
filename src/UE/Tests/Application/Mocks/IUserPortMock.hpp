@@ -23,6 +23,7 @@ public:
     MOCK_METHOD(void, handleViewSmsAccept, (), (final));
     MOCK_METHOD(void, handleViewSmsClose, (), (final));
     MOCK_METHOD(void, handleSmsSend, (), (final));
+    MOCK_METHOD(void, SendSms, (), (final));
 };
 
 class IUserPortMock : public IUserPort
