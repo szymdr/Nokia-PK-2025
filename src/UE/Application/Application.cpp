@@ -13,7 +13,6 @@ namespace ue {
                              ITimerPort &timer)
             : context{iLogger, bts, user, timer},
               logger(iLogger, "[APP] ") {
-        context.phoneNumber = phoneNumber;
         logger.logInfo("Started");
         context.setState<NotConnectedState>();
     }
