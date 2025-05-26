@@ -266,6 +266,7 @@ TEST_F(ApplicationTalkingTestSuite, shallDropCallOnUserAction)
 
 TEST_F(ApplicationTalkingTestSuite, shallEndCallOnRemoteDrop)
 {
+    EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(userPortMock, showAlert("Call ended"));
     EXPECT_CALL(userPortMock, showConnected());
     objectUnderTest.handleRemoteCallDrop();

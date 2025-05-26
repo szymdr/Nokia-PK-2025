@@ -23,6 +23,7 @@ void TalkingState::handleCallDrop()
 
 void TalkingState::handleRemoteCallDrop()
 {
+    context.timer.stopTimer();
     context.setState<ConnectedState>();
     context.user.showAlert("Call ended");
 }
