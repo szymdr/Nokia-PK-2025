@@ -20,4 +20,7 @@ std::optional<Sms> ue::SmsDb::retrieveSms(int index) {
     }
     return std::nullopt;
 }
-
+void ue::SmsDb::markOwnAsRead(){
+    int lastIndex = smsList.size()-1;
+    smsList[lastIndex].markAsRead();
+}
