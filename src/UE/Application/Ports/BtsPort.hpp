@@ -20,6 +20,8 @@ public:
     void sendCallAccept(common::PhoneNumber) override;
     void sendCallDrop(common::PhoneNumber) override;
     void sendCallReject(common::PhoneNumber) override;
+    void sendSms(common::PhoneNumber, const std::string&) override;
+    common::PhoneNumber getOwnPhoneNumber() override;
 
 private:
     void handleMessage(BinaryMessage msg);
