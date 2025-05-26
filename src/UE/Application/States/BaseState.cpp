@@ -85,5 +85,7 @@ void BaseState::handleViewSmsClose() {
 void BaseState::handleSmsSend() {
     logger.logError("Unexpected: showSmsButton");
 }
-
+void BaseState::SendSms() {
+    logger.logError("Unexpected: SendSms");
+}
 }

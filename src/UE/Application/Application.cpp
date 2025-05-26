@@ -94,5 +94,8 @@ namespace ue {
     void Application::handleSmsSend() {
         context.state->handleSmsSend();
     }
+    void Application::SendSms() {
+        context.state->SendSms();
+    }
     
 }

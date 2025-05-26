@@ -20,6 +20,7 @@ public:
     virtual void handleViewSmsList() = 0;
     virtual void handleSmsCompose() = 0;
     virtual void handleSmsSend() = 0;
+    virtual void SendSms() = 0;
 };
 
 class IUserPort

@@ -8,7 +8,7 @@ namespace ue {
 
     public:
         SendingSmsState(Context& context);
-
+        void SendSms() override;
         void handleSmsSend() override;
 
     };

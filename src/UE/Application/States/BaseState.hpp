@@ -37,6 +37,7 @@ public:
     void handleViewSmsAccept() override;
     void handleViewSmsClose() override;
     void handleSmsSend() override;
+    void SendSms() override;
     void onEnter() {}
 
 protected:
