@@ -66,4 +66,14 @@ void BaseState::handleRemoteCallDrop() {
     logger.logError("Unexpected: handleRemoteCallDrop");
 }
 
+void BaseState::handleUserCallTalk(const std::string &text)
+{
+    logger.logError("Unexpected: handleUserCallTalk");
+}
+
+void BaseState::handleBtsCallTalk(const std::string &text)
+{
+    logger.logError("Unexpected: handleBtsCallTalk");
+}
+
 }

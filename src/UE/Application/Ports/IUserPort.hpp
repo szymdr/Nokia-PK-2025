@@ -13,6 +13,7 @@ public:
     virtual void handleDialAction() = 0;
     virtual void handleCallAccept() = 0;
     virtual void handleCallDrop() = 0;
+    virtual void handleUserCallTalk(const std::string& text) = 0;
 };
 
 class IUserPort
@@ -28,6 +29,7 @@ public:
     virtual void showCalling(const common::PhoneNumber& number) = 0;
     virtual void showTalking() = 0;
     virtual void showAlert(const std::string &text) = 0;
+    virtual void appendIncomingText(const std::string& text) = 0;
 
     virtual common::PhoneNumber getDialedPhoneNumber() const = 0;
 

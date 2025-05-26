@@ -80,6 +80,14 @@ void BtsPort::handleMessage(BinaryMessage msg)
             break;
         }
 
+        case common::MessageId::CallTalk:
+        {
+            auto text = reader.readRemainingText();
+            logger.logDebug("CallTalk received from: ", from, ", text: ", text);
+            handler->handleBtsCallTalk(text);
+            break;
+        }
+
         default:
             logger.logError("unknown message: ", msgId, ", from: ", from);
 
@@ -137,6 +145,16 @@ void BtsPort::sendCallReject(common::PhoneNumber number)
                                 phoneNumber,
                                 number};
     msg.writePhoneNumber(number);
+    transport.sendMessage(msg.getMessage());
+}
+
+void BtsPort::sendCallTalk(common::PhoneNumber to, const std::string& text)
+{
+    logger.logDebug("Sending CallTalk to ", to, ": ", text);
+
+    common::OutgoingMessage msg{common::MessageId::CallTalk, phoneNumber, to};
+    msg.writeText(text);
+
     transport.sendMessage(msg.getMessage());
 }
 

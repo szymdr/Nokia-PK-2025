@@ -81,4 +81,14 @@ void Application::handleRemoteCallDrop()
     {
     context.state->handleRemoteCallDrop();
 }
+void Application::handleUserCallTalk(const std::string& text)
+{
+    context.state->handleUserCallTalk(text);
+}
+
+void Application::handleBtsCallTalk(const std::string& text)
+{
+    context.state->handleBtsCallTalk(text);
+}
+
 }

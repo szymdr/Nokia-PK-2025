@@ -29,6 +29,10 @@ public:
     void setDialNumber(const common::PhoneNumber& number);
     void handleMenuSelection(unsigned index);
 
+    void appendIncomingText(const std::string& text) override;
+
+
+
 private:
     common::PrefixedLogger logger;
     IUeGui& gui;

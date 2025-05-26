@@ -3,6 +3,9 @@
 #include "ITimerPort.hpp"
 #include "Logger/PrefixedLogger.hpp"
 #include <atomic>
+#include <thread>
+#include <condition_variable>
+#include <mutex>
 
 namespace ue
 {
@@ -23,9 +26,14 @@ public:
 private:
     common::PrefixedLogger logger;
     ITimerEventsHandler* handler = nullptr;
-    std::atomic<bool> isTimerRunning{false};
 
-    void runTimer(Duration duration) override;
+    std::atomic<bool> isTimerRunning{false};
+    std::thread timerThread;
+    std::condition_variable timerCv;
+    std::mutex timerMutex;
+    bool stopRequested = false;
+
+    void runTimer(Duration duration);
 };
 
 }

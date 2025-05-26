@@ -32,6 +32,10 @@ public:
     void handleCallDrop() override;
     void handleRemoteCallDrop () override;
 
+    void handleBtsCallTalk(const std::string &text) override;
+    void handleUserCallTalk(const std::string &text) override;
+
+
 protected:
     Context& context;
     common::PrefixedLogger logger;
