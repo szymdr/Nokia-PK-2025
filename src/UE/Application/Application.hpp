@@ -38,6 +38,13 @@ public:
     void handleDialAction() override;
     void handleCallAccept() override;
     void handleCallDrop() override;
+    void handleSmsReceived(const std::string& text,common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) override;
+    void handleSmsCompose() override;
+    void handleViewSmsList() override;
+    void handleViewSmsAccept() override;
+    void handleViewSmsClose() override;
+    void handleSmsSend() override;
+
 private:
     Context context;
     common::PrefixedLogger logger;
