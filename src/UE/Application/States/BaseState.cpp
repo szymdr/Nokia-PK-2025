@@ -84,7 +84,7 @@ void BaseState::handleSmsSend() {
 }
 void BaseState::SendSms() {
     logger.logError("Unexpected: SendSms");
-
+}
 void BaseState::handleRemoteCallDrop() {
     logger.logError("Unexpected: handleRemoteCallDrop");
 }
