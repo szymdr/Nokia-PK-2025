@@ -49,13 +49,10 @@ public:
     virtual void setAcceptCallback(IUeGui::Callback) = 0;
     virtual void setRejectCallback(IUeGui::Callback) = 0;
     virtual void showSmsComposerView() = 0;
-    virtual void showNewSms(bool isNew) = 0;
-    virtual void showSmsCompose() = 0;
+    
 
 
     virtual void showCalling(const common::PhoneNumber& number) = 0;
-    virtual void showTalking() = 0;
-    virtual void showAlert(const std::string &text) = 0;
     virtual void appendIncomingText(const std::string& text) = 0;
 
     virtual common::PhoneNumber getDialedPhoneNumber() const = 0;
