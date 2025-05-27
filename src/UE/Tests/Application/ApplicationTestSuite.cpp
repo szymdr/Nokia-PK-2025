@@ -193,6 +193,7 @@ public:
     EXPECT_CALL(*composeMode, clearSmsText());
     testing::Mock::AllowLeak(composeMode.get());
     EXPECT_CALL(userPortMock, setAcceptCallback(_));
+    EXPECT_CALL(userPortMock, setRejectCallback(_));
     objectUnderTest.handleSmsCompose();
 }
 
