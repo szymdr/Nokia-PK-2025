@@ -39,7 +39,6 @@ public:
     virtual void showDialing() = 0;
     virtual void showTalking() = 0;
     virtual void showAlert(const std::string &text) = 0;
-    virtual void setDialNumber(const common::PhoneNumber& number) = 0;
     virtual IUeGui::ISmsComposeMode& getSmsComposeMode() = 0;
     virtual void showSmsList() = 0;
     virtual void showSms(int index) = 0;
