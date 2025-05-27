@@ -45,6 +45,10 @@ public:
     virtual void setAcceptCallback(IUeGui::Callback) = 0;
     virtual void setRejectCallback(IUeGui::Callback) = 0;
     virtual void showSmsComposerView() = 0;
+    virtual void showNewSms(bool isNew) = 0;
+    virtual void showSmsCompose() = 0;
+
+
 };
 
 }

@@ -39,6 +39,9 @@ public:
     void setAcceptCallback(IUeGui::Callback) override;
     void setRejectCallback(IUeGui::Callback) override;
     void showSmsComposerView() override;
+
+    void showNewSms(bool isNew) override;
+    void showSmsCompose() override;
 private:
     common::PrefixedLogger logger;
     IUeGui& gui;

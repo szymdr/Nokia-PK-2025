@@ -213,4 +213,14 @@ void UserPort::handleMenuSelection(unsigned index)
     }
 }
 
+    void UserPort::showNewSms(bool)
+{
+    gui.setAlertMode().setText("New SMS received");
+}
+
+    void UserPort::showSmsCompose()
+{
+    gui.setSmsComposeMode();
+}
+
 }
