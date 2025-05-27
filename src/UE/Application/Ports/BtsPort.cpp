@@ -87,6 +87,13 @@ void BtsPort::handleMessage(BinaryMessage msg)
             handler->handleSmsReceived(text, from, phoneNumber);
             break;
         }
+        case common::MessageId::CallTalk:
+        {
+            auto text = reader.readRemainingText();
+            logger.logDebug("CallTalk received from: ", from, ", text: ", text);
+            handler->handleBtsCallTalk(text);
+            break;
+        }
 
         default:
             logger.logError("unknown message: ", msgId, ", from: ", from);
