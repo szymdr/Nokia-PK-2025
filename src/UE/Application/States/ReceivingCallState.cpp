@@ -1,5 +1,6 @@
 #include "ReceivingCallState.hpp"
 #include "ConnectedState.hpp"
+#include "NotConnectedState.hpp"
 #include "TalkingState.hpp"
 
 namespace ue
@@ -45,6 +46,11 @@ void ReceivingCallState::handleTimeout()
 
 void ReceivingCallState::handleCallRequest(common::PhoneNumber phoneNumber)
 {
+}
+
+void ReceivingCallState::handleDisconnected()
+{
+    context.setState<NotConnectedState>();
 }
 
 }
