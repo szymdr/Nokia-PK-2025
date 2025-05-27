@@ -8,7 +8,7 @@
 #include "Mocks/ITimerPortMock.hpp"
 #include "Messages/PhoneNumber.hpp"
 #include <memory>
-#include <UeGui/ISmsComposeMode.hpp>
+#include "Mocks/IUeGuiMock.hpp"
 #include <SmsDB.hpp>
 
 namespace ue
@@ -181,65 +181,73 @@ TEST_F(ApplicationReceivingCallTestSuite, ignoreUnknownPeerAfterReject)
 }
 
 
-    class MockComposeMode : public IUeGui::ISmsComposeMode
+    struct ApplicationSendingSmsTestSuite : ApplicationConnectedTestSuite
 {
-public:
-    MOCK_METHOD(common::PhoneNumber, getPhoneNumber, (), (const, override));
-    MOCK_METHOD(std::string, getSmsText, (), (const, override));
-    MOCK_METHOD(void, clearSmsText, (), (override));
+    SmsDb dummyDb;
+    std::unique_ptr<NiceMock<ISmsComposeModeMock>> composeMode;
+
+    ApplicationSendingSmsTestSuite()
+    {
+        EXPECT_CALL(userPortMock, showSmsComposerView());
+
+        composeMode = std::make_unique<NiceMock<ISmsComposeModeMock>>();
+        EXPECT_CALL(userPortMock, getSmsComposeMode()).WillRepeatedly(ReturnRef(*composeMode));
+        EXPECT_CALL(*composeMode, clearSmsText());
+        testing::Mock::AllowLeak(composeMode.get());
+
+        EXPECT_CALL(userPortMock, setAcceptCallback(_));
+        EXPECT_CALL(userPortMock, setRejectCallback(_));
+
+        objectUnderTest.handleSmsCompose();
+    }
 };
 
-    TEST_F(ApplicationConnectedTestSuite, shallHandleSmsCompose)
-{
-    EXPECT_CALL(userPortMock, showSmsComposerView());
-    auto composeMode = std::make_unique<NiceMock<MockComposeMode>>();
-    EXPECT_CALL(userPortMock, getSmsComposeMode())
-        .WillOnce(ReturnRef(*composeMode));
-    EXPECT_CALL(*composeMode, clearSmsText());
-    testing::Mock::AllowLeak(composeMode.get());
-    EXPECT_CALL(userPortMock, setAcceptCallback(_));
-    EXPECT_CALL(userPortMock, setRejectCallback(_));
-    objectUnderTest.handleSmsCompose();
-}
+    TEST_F(ApplicationSendingSmsTestSuite, shallHandleSmsSend)
+    {
+        const auto PEER_NUMBER = common::PhoneNumber{123};
+        const std::string TEXT = "Test SMS";
 
+        EXPECT_CALL(*composeMode, getPhoneNumber()).WillOnce(Return(PEER_NUMBER));
+        EXPECT_CALL(*composeMode, getSmsText()).WillOnce(Return(TEXT));
+        EXPECT_CALL(userPortMock, getSmsDb()).WillOnce(ReturnRef(dummyDb));
+        EXPECT_CALL(btsPortMock, getOwnPhoneNumber()).WillOnce(Return(PHONE_NUMBER));
+        EXPECT_CALL(btsPortMock, sendSms(PEER_NUMBER, TEXT));
+        EXPECT_CALL(userPortMock, showConnected());
 
-    TEST_F(ApplicationConnectedTestSuite, shallHandleSmsSend)
-{
-    objectUnderTest.handleSmsSend();
-    SUCCEED();
-}
-
+        objectUnderTest.handleSmsSend();
+    }
 
     TEST_F(ApplicationConnectedTestSuite, shallHandleSmsReceived)
     {
         const std::string TEXT = "Hello from test";
         const common::PhoneNumber SENDER{200};
         SmsDb tempDb;
+
         EXPECT_CALL(userPortMock, getSmsDb()).WillOnce(ReturnRef(tempDb));
         EXPECT_CALL(userPortMock, showAlert("NEW MESSAGE!"));
+
         objectUnderTest.handleSmsReceived(TEXT, SENDER, PHONE_NUMBER);
     }
 
+    struct ApplicationViewingSmsListTestSuite : ApplicationConnectedTestSuite {
+        ApplicationViewingSmsListTestSuite() {
+            ON_CALL(userPortMock, getSmsDb()).WillByDefault(ReturnRef(dummyDb));
+            EXPECT_CALL(userPortMock, showSmsList());
+            objectUnderTest.handleViewSmsList();
+        }
+    };
 
-    TEST_F(ApplicationConnectedTestSuite, shallHandleViewSmsList)
-{
-    SmsDb dummyDb;
-    ON_CALL(userPortMock, getSmsDb()).WillByDefault(ReturnRef(dummyDb));
-    EXPECT_CALL(userPortMock, showSmsList());
-    objectUnderTest.handleViewSmsList();
-}
+    TEST_F(ApplicationViewingSmsListTestSuite, shallHandleViewSmsAccept) {
+        EXPECT_CALL(userPortMock, getAction()).WillOnce(Return(0));
+        EXPECT_CALL(userPortMock, showSms(0));
+        objectUnderTest.handleViewSmsAccept();
+    }
 
-    TEST_F(ApplicationConnectedTestSuite, shallHandleViewSmsAccept)
-{
-    objectUnderTest.handleViewSmsAccept();
-    SUCCEED();
-}
+    TEST_F(ApplicationViewingSmsListTestSuite, shallHandleViewSmsClose) {
+        EXPECT_CALL(userPortMock, showConnected());
+        objectUnderTest.handleViewSmsClose();
+    }
 
-    TEST_F(ApplicationConnectedTestSuite, shallHandleViewSmsClose)
-{
-    objectUnderTest.handleViewSmsClose();
-    SUCCEED();
-}
 struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
 {
     const common::PhoneNumber PEER_NUMBER{123};
