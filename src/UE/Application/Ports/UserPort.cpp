@@ -3,8 +3,9 @@
 #include <UeGui/ICallMode.hpp>
 #include <UeGui/IDialMode.hpp>
 #include <UeGui/ITextMode.hpp>
-
-#include "UeGui/IListViewMode.hpp"
+#include <UeGui/ISmsComposeMode.hpp>
+#include <UeGui/IListViewMode.hpp>
+#include <Sms.hpp>
 
 namespace ue
 {
@@ -102,6 +103,7 @@ void UserPort::showCalling(const common::PhoneNumber& number)
     gui.setAcceptCallback([this]() {});
 
     gui.setRejectCallback([this]() {
+
         if (handler)
         {
             handler->handleCallDrop();
@@ -157,9 +159,80 @@ common::PhoneNumber UserPort::getDialedPhoneNumber() const
 
 void UserPort::setDialNumber(const common::PhoneNumber& number)
 {
+
     gui.setDialMode();
     logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
 
+}
+
+
+
+void UserPort::showSmsList() {
+    IUeGui::IListViewMode& menu = gui.setListViewMode();
+    menu.clearSelectionList();
+
+    for (auto&& sms : smsDb.getSmsList()) {
+        std::string isNew;
+        if(!sms.isRead()){
+            isNew = "NEW ";
+        }
+        std::string info = isNew + "FROM: " + common::to_string(sms.getFrom()) + "TO: " + common::to_string(sms.getTo());
+        menu.addSelectionListItem(info, "");
+    }
+
+    gui.setAcceptCallback([this, &menu] { onAcceptSmsList(menu); });
+    gui.setRejectCallback([this] {
+        if (handler) handler->handleViewSmsClose();
+    });
+}
+
+void UserPort::onAcceptSmsList(IUeGui::IListViewMode& menu) {
+    auto selection = menu.getCurrentItemIndex();
+    if (selection.first) {
+        action = selection.second;
+        if (handler) handler->handleViewSmsAccept();
+    }
+}
+
+void UserPort::showSms(int index) {
+    auto smsOpt = smsDb.retrieveSms(index);
+    if (smsOpt) {
+        gui.setViewTextMode().setText(smsOpt->getText());
+    } else {
+        gui.setAlertMode().setText("SMS not found");
+    }
+
+    gui.setAcceptCallback([this] {
+        if (handler) handler->handleViewSmsAccept();
+    });
+    gui.setRejectCallback([this] {
+        if (handler) handler->handleViewSmsClose();
+    });
+}
+
+int UserPort::getAction() {
+    return action;
+}
+
+SmsDb& UserPort::getSmsDb() {
+    return smsDb;
+}
+IUeGui::ISmsComposeMode& UserPort::getSmsComposeMode()
+{
+    return gui.setSmsComposeMode();
+}
+void UserPort::setAcceptCallback(IUeGui::Callback callback)
+{
+    gui.setAcceptCallback(callback);
+}
+
+void UserPort::setRejectCallback(IUeGui::Callback callback)
+{
+    gui.setRejectCallback(callback);
+}
+void UserPort::showSmsComposerView()
+{
+    gui.setSmsComposeMode();
 }
 
 
@@ -167,20 +240,23 @@ void UserPort::handleMenuSelection(unsigned index)
 {
     switch (index)
     {
-    case 0:
-        gui.setSmsComposeMode();
-        break;
-    case 1:
-        gui.setListViewMode();
-        break;
-    case 2:
-        showDialing();
-        break;
-    default:
-        gui.setAlertMode().setText("Invalid selection");
-        break;
+        case 0:
+            handler->handleSmsCompose();
+
+            break;
+        case 1:
+            handler->handleViewSmsList();
+            break;
+        case 2:
+            showDialing();
+            break;
+        default:
+            gui.setAlertMode().setText("Invalid selection");
+            break;
     }
 }
+
+
 
 void UserPort::appendIncomingText(const std::string& text)
 {

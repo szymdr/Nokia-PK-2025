@@ -1,5 +1,6 @@
 #include "DialingState.hpp"
 #include "ConnectedState.hpp"
+#include "NotConnectedState.hpp"
 #include "TalkingState.hpp"
 namespace ue
 {
@@ -50,6 +51,17 @@ void DialingState::handleCallDrop()
     context.timer.stopTimer();
     context.bts.sendCallDrop(phoneNumber);
     context.setState<ConnectedState>();
+}
+
+void DialingState::handleSmsReceived(const std::string& text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber)
+{
+    SmsDb &db = context.user.getSmsDb();
+    db.addSms(text, fromPhoneNumber, toPhoneNumber);
+}
+
+void DialingState::handleDisconnected()
+{
+    context.setState<NotConnectedState>();
 }
 
 }

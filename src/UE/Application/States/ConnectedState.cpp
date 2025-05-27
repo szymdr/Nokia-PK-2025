@@ -2,7 +2,11 @@
 #include "NotConnectedState.hpp"
 #include "TalkingState.hpp"
 #include "ReceivingCallState.hpp"
+#include "ViewingSmsListState.hpp"
+#include "SendingSmsState.hpp"
 #include "DialingState.hpp"
+#include <UeGui/IListViewMode.hpp>
+
 
 namespace ue
 {
@@ -28,6 +32,24 @@ void ConnectedState::handleCallRequest(common::PhoneNumber callerNumber)
     context.setState<ReceivingCallState>(callerNumber);
 }
 
+void ConnectedState::handleSmsReceived(const std::string& text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) {
+    SmsDb &db = context.user.getSmsDb();
+    db.addSms(text, fromPhoneNumber, toPhoneNumber);
+    context.user.showAlert("NEW MESSAGE!");
+}
+void ConnectedState::handleSmsCompose()
+{
+    logger.logDebug("ConnectedState: Composing SMS");
+    context.setState<SendingSmsState>();
+}
+void ConnectedState::handleViewSmsList()
+{
+    logger.logDebug("ConnectedState: Viewing SMS list");
+    context.setState<ViewingSmsListState>();
+}
+
+
+
 void ConnectedState::handleDialAction()
 {
     logger.logDebug("ConnectedState: handleDialAction called");
@@ -39,6 +61,7 @@ void ConnectedState::handleDialAction()
     context.bts.sendCallRequest(numberToDial);
     context.timer.startTimer(std::chrono::seconds(60));
     context.setState<DialingState>(numberToDial);
+
 }
 
 void ConnectedState::handleCallDrop()

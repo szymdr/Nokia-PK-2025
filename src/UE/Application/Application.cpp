@@ -1,8 +1,7 @@
 #include "Application.hpp"
 #include "States/NotConnectedState.hpp"
 #include "States/ConnectedState.hpp"
-
-
+#include "States/ViewingSmsListState.hpp"
 
 namespace ue
 {
@@ -90,5 +89,31 @@ void Application::handleBtsCallTalk(const std::string& text)
 {
     context.state->handleBtsCallTalk(text);
 }
-
+void Application::handleSmsReceived(const std::string &text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) {
+    context.state->handleSmsReceived(text, fromPhoneNumber, toPhoneNumber);
 }
+
+void Application::handleSmsCompose() {
+    context.state->handleSmsCompose();
+}
+
+void Application::handleViewSmsList() {
+    context.state->handleViewSmsList();
+}
+
+void Application::handleViewSmsAccept() {
+    context.state->handleViewSmsAccept();
+}
+
+void Application::handleViewSmsClose() {
+    context.state->handleViewSmsClose();
+}
+
+void Application::handleSmsSend() {
+    context.state->handleSmsSend();
+}
+void Application::SendSms() {
+    context.state->SendSms();
+}
+}
+

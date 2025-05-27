@@ -2,6 +2,7 @@
 
 #include "ConnectedState.hpp"
 #include "Context.hpp"
+#include "NotConnectedState.hpp"
 
 namespace ue
 {
@@ -72,6 +73,17 @@ void TalkingState::sendMessage(const std::string& text)
 void TalkingState::resetInactivityTimer() const
 {
     context.timer.startTimer(std::chrono::minutes(2));
+}
+
+void TalkingState::handleSmsReceived(const std::string& text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber)
+{
+    SmsDb &db = context.user.getSmsDb();
+    db.addSms(text, fromPhoneNumber, toPhoneNumber);
+}
+
+void TalkingState::handleDisconnected()
+{
+    context.setState<NotConnectedState>();
 }
 
 }

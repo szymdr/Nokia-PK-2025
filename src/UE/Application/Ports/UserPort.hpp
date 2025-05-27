@@ -4,7 +4,8 @@
 #include "Logger/PrefixedLogger.hpp"
 #include "IUeGui.hpp"
 #include "Messages/PhoneNumber.hpp"
-
+#include "SmsDB.hpp"
+#include "Sms.hpp"
 namespace ue
 {
 
@@ -21,16 +22,29 @@ public:
 
     void showIncomingCall(const common::PhoneNumber callerNumber) override;
     void showDialing() override;
+
     void showCalling(const common::PhoneNumber& number) override;
+
     void showTalking() override;
     void showAlert(const std::string& text) override;
 
     common::PhoneNumber getDialedPhoneNumber() const override;
+
     void setDialNumber(const common::PhoneNumber& number);
+
     void handleMenuSelection(unsigned index);
 
-    void appendIncomingText(const std::string& text) override;
+    void showSmsList() override;
+    void showSms(int index) override;
+    int getAction() override;
+    IUeGui::ISmsComposeMode& getSmsComposeMode() override;
+    SmsDb& getSmsDb();
+    void setAcceptCallback(IUeGui::Callback) override;
+    void setRejectCallback(IUeGui::Callback) override;
+    void showSmsComposerView() override;
 
+
+    void appendIncomingText(const std::string& text) override;
 
 
 private:
@@ -39,6 +53,12 @@ private:
     common::PhoneNumber callerNumber;
     IUserEventsHandler* handler = nullptr;
     common::PhoneNumber dialedPhoneNumber;
+    IUeGui::Callback callback;
+    SmsDb smsDb;
+    int action = -1;
+    void onAcceptSmsList(IUeGui::IListViewMode& menu);
+
+
 };
 
 }

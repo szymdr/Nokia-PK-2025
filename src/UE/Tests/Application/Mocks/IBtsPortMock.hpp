@@ -23,8 +23,12 @@ public:
     MOCK_METHOD(void, handleUserAcceptCall, (), (override));
     MOCK_METHOD(void, handleUnknownRecipient, (common::PhoneNumber), (override));
     MOCK_METHOD(void, handleCallAccept, (), (override));
+
+    MOCK_METHOD(void, handleSmsReceived, (const std::string&, common::PhoneNumber, common::PhoneNumber), (override));
+
     MOCK_METHOD(void, handleRemoteCallDrop, (), (override));
     MOCK_METHOD(void, handleBtsCallTalk, (const std::string &text), (override));
+
 
 };
 
@@ -39,7 +43,11 @@ public:
     MOCK_METHOD(void, sendCallAccept, (common::PhoneNumber), (final));
     MOCK_METHOD(void, sendCallDrop, (common::PhoneNumber), (final));
     MOCK_METHOD(void, sendCallReject, (common::PhoneNumber), (final));
+    MOCK_METHOD(void, sendSms, (common::PhoneNumber, const std::string&), (override));
+    MOCK_METHOD(common::PhoneNumber, getOwnPhoneNumber, (), (override));
+
     MOCK_METHOD(void, sendCallTalk, (common::PhoneNumber to, const std::string &text), (override));
+
 
 
 };

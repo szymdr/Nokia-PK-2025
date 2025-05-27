@@ -18,6 +18,8 @@ public:
     void handleTimeout() override;
     void handleUserCallTalk(const std::string& text) override;
     void handleBtsCallTalk(const std::string& text) override;
+    void handleSmsReceived(const std::string& text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) override;
+    void handleDisconnected() override;
 
 private:
     void sendMessage(const std::string& text);

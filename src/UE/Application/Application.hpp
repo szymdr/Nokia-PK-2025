@@ -40,6 +40,15 @@ public:
     void handleRemoteCallDrop() override;
     void handleUserCallTalk(const std::string& text) override;
     void handleBtsCallTalk(const std::string& text) override;
+    
+    void handleSmsReceived(const std::string& text,common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) override;
+    void handleSmsCompose() override;
+    void handleViewSmsList() override;
+    void handleViewSmsAccept() override;
+    void handleViewSmsClose() override;
+    void handleSmsSend() override;
+    void SendSms() override;
+
 
 private:
     Context context;

@@ -8,6 +8,8 @@
 #include "Mocks/ITimerPortMock.hpp"
 #include "Messages/PhoneNumber.hpp"
 #include <memory>
+#include "Mocks/IUeGuiMock.hpp"
+#include <SmsDB.hpp>
 
 namespace ue
 {
@@ -72,12 +74,13 @@ TEST_F(ApplicationConnectingTestSuite, shallConnectOnAttachAccept)
 
 struct ApplicationConnectedTestSuite : ApplicationConnectingTestSuite
 {
+    SmsDb dummyDb;
     ApplicationConnectedTestSuite();
 };
 
 ApplicationConnectedTestSuite::ApplicationConnectedTestSuite() {
     EXPECT_CALL(timerPortMock, stopTimer());
-    EXPECT_CALL(userPortMock, showConnected());
+    EXPECT_CALL(userPortMock, showConnected()).Times(AnyNumber());
     objectUnderTest.handleAttachAccept();
 }
 
@@ -176,6 +179,74 @@ TEST_F(ApplicationReceivingCallTestSuite, ignoreUnknownPeerAfterReject)
     // BTS → UnknownRecipient
     EXPECT_NO_THROW(objectUnderTest.handleUnknownRecipient(PHONE_NUMBER));
 }
+
+
+    struct ApplicationSendingSmsTestSuite : ApplicationConnectedTestSuite
+{
+    SmsDb dummyDb;
+    std::unique_ptr<NiceMock<ISmsComposeModeMock>> composeMode;
+
+    ApplicationSendingSmsTestSuite()
+    {
+        EXPECT_CALL(userPortMock, showSmsComposerView());
+
+        composeMode = std::make_unique<NiceMock<ISmsComposeModeMock>>();
+        EXPECT_CALL(userPortMock, getSmsComposeMode()).WillRepeatedly(ReturnRef(*composeMode));
+        EXPECT_CALL(*composeMode, clearSmsText());
+        testing::Mock::AllowLeak(composeMode.get());
+
+        EXPECT_CALL(userPortMock, setAcceptCallback(_));
+        EXPECT_CALL(userPortMock, setRejectCallback(_));
+
+        objectUnderTest.handleSmsCompose();
+    }
+};
+
+    TEST_F(ApplicationSendingSmsTestSuite, shallHandleSmsSend)
+    {
+        const auto PEER_NUMBER = common::PhoneNumber{123};
+        const std::string TEXT = "Test SMS";
+
+        EXPECT_CALL(*composeMode, getPhoneNumber()).WillOnce(Return(PEER_NUMBER));
+        EXPECT_CALL(*composeMode, getSmsText()).WillOnce(Return(TEXT));
+        EXPECT_CALL(userPortMock, getSmsDb()).WillOnce(ReturnRef(dummyDb));
+        EXPECT_CALL(btsPortMock, getOwnPhoneNumber()).WillOnce(Return(PHONE_NUMBER));
+        EXPECT_CALL(btsPortMock, sendSms(PEER_NUMBER, TEXT));
+        EXPECT_CALL(userPortMock, showConnected());
+
+        objectUnderTest.handleSmsSend();
+    }
+
+    TEST_F(ApplicationConnectedTestSuite, shallHandleSmsReceived)
+    {
+        const std::string TEXT = "Hello from test";
+        const common::PhoneNumber SENDER{200};
+        SmsDb tempDb;
+
+        EXPECT_CALL(userPortMock, getSmsDb()).WillOnce(ReturnRef(tempDb));
+        EXPECT_CALL(userPortMock, showAlert("NEW MESSAGE!"));
+
+        objectUnderTest.handleSmsReceived(TEXT, SENDER, PHONE_NUMBER);
+    }
+
+    struct ApplicationViewingSmsListTestSuite : ApplicationConnectedTestSuite {
+        ApplicationViewingSmsListTestSuite() {
+            ON_CALL(userPortMock, getSmsDb()).WillByDefault(ReturnRef(dummyDb));
+            EXPECT_CALL(userPortMock, showSmsList());
+            objectUnderTest.handleViewSmsList();
+        }
+    };
+
+    TEST_F(ApplicationViewingSmsListTestSuite, shallHandleViewSmsAccept) {
+        EXPECT_CALL(userPortMock, getAction()).WillOnce(Return(0));
+        EXPECT_CALL(userPortMock, showSms(0));
+        objectUnderTest.handleViewSmsAccept();
+    }
+
+    TEST_F(ApplicationViewingSmsListTestSuite, shallHandleViewSmsClose) {
+        EXPECT_CALL(userPortMock, showConnected());
+        objectUnderTest.handleViewSmsClose();
+    }
 
 struct ApplicationDialingTestSuite : ApplicationConnectedTestSuite
 {
@@ -330,6 +401,7 @@ TEST_F(ApplicationTalkingTestSuite, shallHandleUnknownRecipientDuringTalking)
     EXPECT_CALL(userPortMock, showConnected());
 
     objectUnderTest.handleUnknownRecipient(PHONE_NUMBER);
+
 }
 
 }

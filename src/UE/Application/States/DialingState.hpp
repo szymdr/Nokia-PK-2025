@@ -19,6 +19,8 @@ public:
     void handleCallDrop() override;
     void handleRemoteCallDrop() override;
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
+    void handleSmsReceived(const std::string& text, common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) override;
+    void handleDisconnected() override;
 
 private:
     common::PhoneNumber phoneNumber;
