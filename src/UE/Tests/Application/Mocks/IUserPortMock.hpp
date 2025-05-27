@@ -38,6 +38,7 @@ namespace ue
         MOCK_METHOD(void, showConnected, (), (final));
         MOCK_METHOD(void, showIncomingCall, (common::PhoneNumber), (final));
         MOCK_METHOD(void, showDialing, (), (final));
+        MOCK_METHOD(void, showCalling, (const common::PhoneNumber& number), (final));
         MOCK_METHOD(void, showTalking, (), (final));
         MOCK_METHOD(void, showAlert, (const std::string&), (final));
         MOCK_METHOD(void, appendIncomingText, (const std::string &text), (override));
