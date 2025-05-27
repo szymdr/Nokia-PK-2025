@@ -19,8 +19,6 @@ public:
     void handleSmsCompose() override;
     void handleViewSmsList() override;
 
-    void handleCallRequest(common::PhoneNumber callerNumber) override;
-
     void handleCallDrop() override;
     void handleUnknownRecipient(common::PhoneNumber phoneNumber) override;
 
