@@ -32,11 +32,13 @@ void DialingState::handleDialAction()
 
 }
 
-void DialingState::handleRemoteCallDrop()
+void DialingState::handleRemoteCallDrop(common::PhoneNumber phoneNumber)
 {
-    context.timer.stopTimer();
-    context.setState<ConnectedState>();
-    context.user.showAlert("Call not accepted");
+    if (phoneNumber == this->phoneNumber) {
+        context.timer.stopTimer();
+        context.setState<ConnectedState>();
+        context.user.showAlert("Call not accepted");
+    }
 }
 
 void DialingState::handleUnknownRecipient(common::PhoneNumber phoneNumber)
@@ -62,6 +64,11 @@ void DialingState::handleSmsReceived(const std::string& text, common::PhoneNumbe
 void DialingState::handleDisconnected()
 {
     context.setState<NotConnectedState>();
+}
+
+void DialingState::handleCallRequest(common::PhoneNumber phoneNumber)
+{
+    context.bts.sendCallDrop(phoneNumber);
 }
 
 }

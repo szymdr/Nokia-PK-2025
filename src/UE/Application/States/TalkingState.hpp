@@ -12,7 +12,7 @@ public:
     ~TalkingState() override;
 
     void handleCallDrop() override;
-    void handleRemoteCallDrop() override;
+    void handleRemoteCallDrop(common::PhoneNumber phoneNumber) override;
     void handleUnknownRecipient(common::PhoneNumber) override;
     void handleCallRequest(common::PhoneNumber) override;
     void handleTimeout() override;

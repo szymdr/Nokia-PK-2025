@@ -13,7 +13,7 @@ public:
 
     void handleUserAcceptCall() override;
     void handleCallDrop() override;
-    void handleRemoteCallDrop() override;
+    void handleRemoteCallDrop(common::PhoneNumber phoneNumber) override;
     void handleTimeout() override;
     void handleCallRequest(common::PhoneNumber) override;
     void handleDisconnected() override;

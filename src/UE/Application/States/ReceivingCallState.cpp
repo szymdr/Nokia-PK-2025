@@ -32,10 +32,12 @@ void ReceivingCallState::handleCallDrop()
     context.setState<ConnectedState>();
 }
 
-void ReceivingCallState::handleRemoteCallDrop()
+void ReceivingCallState::handleRemoteCallDrop(common::PhoneNumber phoneNumber)
 {
-    context.timer.stopTimer();
-    context.setState<ConnectedState>();
+    if (phoneNumber == callerNumber) {
+        context.timer.stopTimer();
+        context.setState<ConnectedState>();
+    }
 }
 
 void ReceivingCallState::handleTimeout()
@@ -46,6 +48,7 @@ void ReceivingCallState::handleTimeout()
 
 void ReceivingCallState::handleCallRequest(common::PhoneNumber phoneNumber)
 {
+    context.bts.sendCallDrop(phoneNumber);
 }
 
 void ReceivingCallState::handleDisconnected()

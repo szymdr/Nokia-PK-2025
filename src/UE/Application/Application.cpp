@@ -76,9 +76,9 @@ void Application::handleCallDrop()
     context.state->handleCallDrop();
 }
 
-void Application::handleRemoteCallDrop()
+void Application::handleRemoteCallDrop(common::PhoneNumber phoneNumber)
     {
-    context.state->handleRemoteCallDrop();
+    context.state->handleRemoteCallDrop(phoneNumber);
 }
 void Application::handleUserCallTalk(const std::string& text)
 {

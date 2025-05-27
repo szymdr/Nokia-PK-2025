@@ -26,7 +26,7 @@ public:
 
     MOCK_METHOD(void, handleSmsReceived, (const std::string&, common::PhoneNumber, common::PhoneNumber), (override));
 
-    MOCK_METHOD(void, handleRemoteCallDrop, (), (override));
+    MOCK_METHOD(void, handleRemoteCallDrop, (common::PhoneNumber), (override));
     MOCK_METHOD(void, handleBtsCallTalk, (const std::string &text), (override));
 
 

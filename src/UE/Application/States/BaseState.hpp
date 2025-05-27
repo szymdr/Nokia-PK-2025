@@ -39,7 +39,7 @@ public:
     void handleSmsSend() override;
     void SendSms() override;
 
-    void handleRemoteCallDrop () override;
+    void handleRemoteCallDrop (common::PhoneNumber phoneNumber) override;
 
     void handleBtsCallTalk(const std::string &text) override;
     void handleUserCallTalk(const std::string &text) override;

@@ -85,7 +85,7 @@ void BaseState::handleSmsSend() {
 void BaseState::SendSms() {
     logger.logError("Unexpected: SendSms");
 }
-void BaseState::handleRemoteCallDrop() {
+void BaseState::handleRemoteCallDrop(common::PhoneNumber phoneNumber) {
     logger.logError("Unexpected: handleRemoteCallDrop");
 }
 

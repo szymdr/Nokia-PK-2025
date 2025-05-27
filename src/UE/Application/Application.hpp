@@ -37,7 +37,7 @@ public:
     void handleDialAction() override;
     void handleCallAccept() override;
     void handleCallDrop() override;
-    void handleRemoteCallDrop() override;
+    void handleRemoteCallDrop(PhoneNumber phoneNumber) override;
     void handleUserCallTalk(const std::string& text) override;
     void handleBtsCallTalk(const std::string& text) override;
     

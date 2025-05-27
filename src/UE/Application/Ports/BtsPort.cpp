@@ -70,7 +70,7 @@ void BtsPort::handleMessage(BinaryMessage msg)
         case common::MessageId::CallDropped:
         {
             logger.logDebug("CallDropped received from: ", from);
-            handler->handleRemoteCallDrop();
+            handler->handleRemoteCallDrop(from);
             break;
         }
 

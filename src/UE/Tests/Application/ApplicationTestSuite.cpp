@@ -301,7 +301,7 @@ TEST_F(ApplicationDialingTestSuite, shallReturnToMenuOnRemoteCallDropped)
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(userPortMock, showAlert("Call not accepted"));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleRemoteCallDrop();
+    objectUnderTest.handleRemoteCallDrop(PEER_NUMBER);
 }
 
 TEST_F(ApplicationDialingTestSuite, ignoreUnknownRecipientAfterUserReject)
@@ -340,7 +340,7 @@ TEST_F(ApplicationTalkingTestSuite, shallEndCallOnRemoteDrop)
     EXPECT_CALL(timerPortMock, stopTimer());
     EXPECT_CALL(userPortMock, showAlert("Call ended"));
     EXPECT_CALL(userPortMock, showConnected());
-    objectUnderTest.handleRemoteCallDrop();
+    objectUnderTest.handleRemoteCallDrop(PHONE_NUMBER);
 }
 
 TEST_F(ApplicationTalkingTestSuite, shallSendMessageOnUserInput)

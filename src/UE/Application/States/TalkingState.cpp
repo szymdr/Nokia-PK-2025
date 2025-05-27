@@ -22,11 +22,13 @@ void TalkingState::handleCallDrop()
     context.setState<ConnectedState>();
 }
 
-void TalkingState::handleRemoteCallDrop()
+void TalkingState::handleRemoteCallDrop(common::PhoneNumber phoneNumber)
 {
-    context.timer.stopTimer();
-    context.setState<ConnectedState>();
-    context.user.showAlert("Call ended");
+    if (phoneNumber == talkingToPhoneNumber) {
+        context.timer.stopTimer();
+        context.setState<ConnectedState>();
+        context.user.showAlert("Call ended");
+    }
 }
 
 void TalkingState::handleUnknownRecipient(common::PhoneNumber /*phoneNumber*/)
@@ -35,8 +37,9 @@ void TalkingState::handleUnknownRecipient(common::PhoneNumber /*phoneNumber*/)
     context.user.showAlert("Peer unavailable");
 }
 
-void TalkingState::handleCallRequest(common::PhoneNumber)
+void TalkingState::handleCallRequest(common::PhoneNumber phoneNumber)
 {
+    context.bts.sendCallDrop(phoneNumber);
 }
 
 void TalkingState::handleTimeout()
