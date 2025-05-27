@@ -18,10 +18,15 @@ public:
 
     virtual void handleCallRequest(common::PhoneNumber) = 0;
     virtual void handleUserAcceptCall() = 0;
-    virtual void handleUserRejectCall() = 0;
+    virtual void handleRemoteCallDrop() = 0;
     virtual void handleUnknownRecipient(common::PhoneNumber phoneNumber) = 0;
     virtual void handleCallAccept() = 0;
+
     virtual void handleSmsReceived(const std::string&, common::PhoneNumber, common::PhoneNumber) = 0;
+
+    virtual void handleBtsCallTalk(const std::string& text) = 0;
+
+
 };
 
 class IBtsPort
@@ -35,8 +40,12 @@ public:
     virtual void sendCallAccept(common::PhoneNumber) = 0;
     virtual void sendCallDrop(common::PhoneNumber) = 0;
     virtual void sendCallReject(common::PhoneNumber) = 0;
+
     virtual void sendSms(common::PhoneNumber, const std::string&) = 0;
     virtual common::PhoneNumber getOwnPhoneNumber() = 0;
+
+    virtual void sendCallTalk(common::PhoneNumber to, const std::string& text) = 0;
+
 
 };
 

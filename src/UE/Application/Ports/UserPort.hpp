@@ -22,6 +22,9 @@ public:
 
     void showIncomingCall(const common::PhoneNumber callerNumber) override;
     void showDialing() override;
+
+    void showCalling(const common::PhoneNumber& number) override;
+
     void showTalking() override;
     void showAlert(const std::string& text) override;
 
@@ -40,8 +43,10 @@ public:
     void setRejectCallback(IUeGui::Callback) override;
     void showSmsComposerView() override;
 
-    void showNewSms(bool isNew) override;
-    void showSmsCompose() override;
+
+    void appendIncomingText(const std::string& text) override;
+
+
 private:
     common::PrefixedLogger logger;
     IUeGui& gui;
@@ -52,6 +57,7 @@ private:
     SmsDb smsDb;
     int action = -1;
     void onAcceptSmsList(IUeGui::IListViewMode& menu);
+
 
 };
 

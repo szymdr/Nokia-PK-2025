@@ -44,6 +44,7 @@ void UserPort::showConnected()
     menu.addSelectionListItem("Compose SMS", "");
     menu.addSelectionListItem("View SMS", "");
     menu.addSelectionListItem("Dial number", "");
+
     gui.setAcceptCallback([this]() {
         auto selection = gui.setListViewMode().getCurrentItemIndex();
         if (selection.first)
@@ -55,9 +56,8 @@ void UserPort::showConnected()
 
 void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
 {
-    auto& callMode = gui.setCallMode();
-    callMode.clearIncomingText();
-    callMode.appendIncomingText("Incoming call from: " + to_string(callerNumber));
+    auto& alertMode = gui.setAlertMode();
+    alertMode.setText("Incoming call from: \n" + to_string(callerNumber));
 
     gui.setAcceptCallback([this]() {
         if (handler)
@@ -76,23 +76,34 @@ void UserPort::showIncomingCall(const common::PhoneNumber callerNumber)
 
 void UserPort::showDialing()
 {
-    auto& dialMode = gui.setDialMode();
+    auto &callMode = gui.setCallMode();
+    callMode.clearIncomingText();
+    callMode.appendIncomingText("Type phone number:");
+    auto &dialMode = gui.setDialMode();
 
     gui.setAcceptCallback([this, &dialMode]() {
         if (handler)
         {
             dialedPhoneNumber = dialMode.getPhoneNumber();
             logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
-
-            auto& callMode = gui.setCallMode();
-            callMode.clearIncomingText();
-            callMode.appendIncomingText("Dialing to: " + to_string(dialedPhoneNumber));
-
             handler->handleDialAction();
         }
     });
 
     gui.setRejectCallback([this]() {
+        showConnected();
+    });
+}
+
+void UserPort::showCalling(const common::PhoneNumber& number)
+{
+    auto& alertMode = gui.setAlertMode();
+    alertMode.setText("Dialing to: \n" + to_string(dialedPhoneNumber));
+
+    gui.setAcceptCallback([this]() {});
+
+    gui.setRejectCallback([this]() {
+
         if (handler)
         {
             handler->handleCallDrop();
@@ -103,14 +114,42 @@ void UserPort::showDialing()
 
 void UserPort::showTalking()
 {
-    gui.setCallMode().clearIncomingText();
-    gui.setCallMode().appendIncomingText("Talking...");
+    auto& callMode = gui.setCallMode();
+    callMode.clearIncomingText();
+    callMode.appendIncomingText("Talking...");
+
+    gui.setAcceptCallback([this, &callMode]() {
+        if (handler)
+        {
+            std::string text = callMode.getOutgoingText();
+            if (!text.empty())
+            {
+                callMode.clearOutgoingText();
+                handler->handleUserCallTalk(text);
+            }
+        }
+    });
+
+    gui.setRejectCallback([this]() {
+        if (handler)
+        {
+            handler->handleCallDrop();
+        }
+    });
 }
 
 void UserPort::showAlert(const std::string &text)
 {
-    gui.setAlertMode().setText("" + text);
+    auto &alertMode =  gui.setAlertMode();
+    alertMode.setText(text);
 
+    gui.setAcceptCallback([this]() {
+        showConnected();
+    });
+
+    gui.setRejectCallback([this]() {
+        showConnected();
+    });
 }
 
 common::PhoneNumber UserPort::getDialedPhoneNumber() const
@@ -120,11 +159,12 @@ common::PhoneNumber UserPort::getDialedPhoneNumber() const
 
 void UserPort::setDialNumber(const common::PhoneNumber& number)
 {
-    //dialedPhoneNumber = number;
+
     gui.setDialMode();
     logger.logDebug("UserPort: Dial number set to: ", dialedPhoneNumber);
 
 }
+
 
 
 void UserPort::showSmsList() {
@@ -204,7 +244,6 @@ void UserPort::handleMenuSelection(unsigned index)
             handler->handleViewSmsList();
             break;
         case 2:
-            //gui.setDialMode();
             showDialing();
             break;
         default:
@@ -213,14 +252,14 @@ void UserPort::handleMenuSelection(unsigned index)
     }
 }
 
-    void UserPort::showNewSms(bool)
+
+
+void UserPort::appendIncomingText(const std::string& text)
 {
-    gui.setAlertMode().setText("New SMS received");
+    auto& callMode = gui.setCallMode();
+    callMode.appendIncomingText(text);
+    logger.logDebug("Appending incoming text: ", text);
 }
 
-    void UserPort::showSmsCompose()
-{
-    gui.setSmsComposeMode();
-}
 
 }

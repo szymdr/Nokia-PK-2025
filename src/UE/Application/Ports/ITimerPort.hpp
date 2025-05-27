@@ -22,6 +22,8 @@ public:
 
     virtual void startTimer(Duration) = 0;
     virtual void stopTimer() = 0;
+private:
+    virtual void runTimer(Duration) = 0;
 };
 
 }

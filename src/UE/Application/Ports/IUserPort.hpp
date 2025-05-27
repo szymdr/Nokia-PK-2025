@@ -15,12 +15,16 @@ public:
     virtual void handleDialAction() = 0;
     virtual void handleCallAccept() = 0;
     virtual void handleCallDrop() = 0;
+
     virtual void handleViewSmsAccept() = 0;
     virtual void handleViewSmsClose() = 0;
     virtual void handleViewSmsList() = 0;
     virtual void handleSmsCompose() = 0;
     virtual void handleSmsSend() = 0;
     virtual void SendSms() = 0;
+
+    virtual void handleUserCallTalk(const std::string& text) = 0;
+
 };
 
 class IUserPort
@@ -48,6 +52,15 @@ public:
     virtual void showNewSms(bool isNew) = 0;
     virtual void showSmsCompose() = 0;
 
+
+    virtual void showCalling(const common::PhoneNumber& number) = 0;
+    virtual void showTalking() = 0;
+    virtual void showAlert(const std::string &text) = 0;
+    virtual void appendIncomingText(const std::string& text) = 0;
+
+    virtual common::PhoneNumber getDialedPhoneNumber() const = 0;
+
+    virtual void setDialNumber(const common::PhoneNumber& number) = 0;
 
 };
 

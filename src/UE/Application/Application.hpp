@@ -32,12 +32,15 @@ public:
 
     void handleCallRequest(PhoneNumber phoneNumber) override;
     void handleUserAcceptCall() override;
-    void handleUserRejectCall() override;
     void handleUnknownRecipient(PhoneNumber phoneNumber) override;
 
     void handleDialAction() override;
     void handleCallAccept() override;
     void handleCallDrop() override;
+    void handleRemoteCallDrop() override;
+    void handleUserCallTalk(const std::string& text) override;
+    void handleBtsCallTalk(const std::string& text) override;
+    
     void handleSmsReceived(const std::string& text,common::PhoneNumber fromPhoneNumber, common::PhoneNumber toPhoneNumber) override;
     void handleSmsCompose() override;
     void handleViewSmsList() override;
@@ -45,6 +48,7 @@ public:
     void handleViewSmsClose() override;
     void handleSmsSend() override;
     void SendSms() override;
+
 
 private:
     Context context;
