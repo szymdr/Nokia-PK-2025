@@ -172,7 +172,11 @@ void UserPort::showSmsList() {
     menu.clearSelectionList();
 
     for (auto&& sms : smsDb.getSmsList()) {
-        std::string info = "FROM: " + common::to_string(sms.getFrom()) + "TO: " + common::to_string(sms.getTo());
+        std::string isNew;
+        if(!sms.isRead()){
+            isNew = "NEW ";
+        }
+        std::string info = isNew + "FROM: " + common::to_string(sms.getFrom()) + "TO: " + common::to_string(sms.getTo());
         menu.addSelectionListItem(info, "");
     }
 
